@@ -2,6 +2,7 @@ import dotenv from "dotenv";
 import express from "express";
 import connectDB from "./config/db.js";
 import blogs from "./data/blogs.js";
+import { errorHandler, notFound } from "./middlwares/errorMiddleware.js";
 
 dotenv.config();
 
@@ -21,6 +22,10 @@ app.get("/api/blogs/:id", (req, res) => {
   const blog = blogs.find((b) => b._id === req.params.id);
   res.json(blog);
 });
+
+// Middleware
+app.use(notFound);
+app.use(errorHandler);
 
 const PORT = process.env.PORT || 5000;
 
