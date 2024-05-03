@@ -26,13 +26,14 @@ const SingleBlogScreen = () => {
         size="sm"
         mb="4"
         alignSelf="flex-start"
+        // ml="8"
       >
         Go Back
       </Button>
 
       {/* Product Grid */}
       <Grid
-        templateColumns={{ sm: "1fr", md: "3fr 1fr" }}
+        templateColumns={{ sm: "1fr", md: "4fr 3fr" }}
         gap={{ base: "4", md: "8" }}
         maxWidth="1200px"
         width="100%"
@@ -42,20 +43,20 @@ const SingleBlogScreen = () => {
           src={blog.image}
           alt={blog.name}
           borderRadius="md"
-          maxH="400px"
+          maxH="600px"
           w="full"
         />
 
         {/* Product Details */}
         <Flex direction="column" alignItems="flex-start">
           {/* Product Name */}
-          <Heading as="h2" fontSize="4xl" mb="4">
-            {blog.name}
+          <Heading as="h2" fontSize="4xl" mb="4" fontFamily="Georgia">
+            {blog.title}
           </Heading>
 
           {/* Product Description */}
-          <Text fontSize="lg" mb="6">
-            {blog.description}
+          <Text fontSize="lg" mb="6" fontFamily="sans-serif" display="inline">
+            {blog.content}
           </Text>
 
           {/* Additional Information */}

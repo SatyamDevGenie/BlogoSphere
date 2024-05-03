@@ -23,7 +23,7 @@ const BlogCard = ({ blog }) => {
         alt={blog.name}
         w="full"
         h="222px"
-        objectFit="cover"
+        objectFit="fit"
         borderTopLeftRadius="lg"
         borderTopRightRadius="lg"
       />
