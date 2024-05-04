@@ -110,6 +110,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link as RouterLink } from "react-router-dom";
 import { listBlogs } from "../actions/blogActions";
 import BlogCard from "../components/BlogCard";
+import Loader from "../components/Loader";
+import Message from "../components/Message";
 
 const HomeScreen = () => {
   const dispatch = useDispatch();
@@ -147,10 +149,14 @@ const HomeScreen = () => {
         </Button>
       </Flex>
       {loading ? (
-        <p>Loading....</p>
-      ) : error ? (
-        <p>{error}</p>
+        // <p>Loading.....</p>
+        <Loader />
+      ) : // <Loading />
+      error ? (
+        // <p>{error}</p>
+        <Message type="error">{error}</Message>
       ) : (
+        // <ErrorMessage />
         <Grid
           templateColumns={{
             sm: "1fr",
