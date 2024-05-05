@@ -7,7 +7,7 @@ const Footer = () => {
       align="center"
       justify="center"
       direction={{ base: "column", md: "row" }}
-      bg="whitesmoke"
+      bg="#F5F5F5"
       py="6"
       shadow="lg"
       mt="4"

@@ -1,5 +1,5 @@
 import { Box, Flex, Heading, IconButton, Image, Link } from "@chakra-ui/react";
-import { MdDelete } from "react-icons/md";
+import { MdDelete, MdEdit } from "react-icons/md";
 import { Link as RouterLink } from "react-router-dom";
 
 const BlogCard = ({ blog }) => {
@@ -20,26 +20,40 @@ const BlogCard = ({ blog }) => {
     >
       <Image
         src={blog.image}
-        alt={blog.name}
+        alt={blog.title}
         w="full"
-        h="222px"
+        h="200px"
         objectFit="fit"
         borderTopLeftRadius="lg"
         borderTopRightRadius="lg"
       />
       <Flex py="5" px="4" direction="column" justifyContent="space-between">
-        <Flex alignItems="center" justifyContent="space-between">
-          <Heading as="h4" fontSize="lg" mb="3">
-            {blog.name}
-          </Heading>
-          {/* Delete Button */}
-          <IconButton
-            aria-label="Delete"
-            icon={<MdDelete />}
-            // onClick={handleDelete}
-            colorScheme="gray"
-          />
+        <Flex direction="row " justifyContent="space-between">
+          <Flex alignItems="center" justifyContent="space-between">
+            <Heading as="h4" fontSize="lg" mb="3">
+              {blog.title}
+            </Heading>
+          </Flex>
+          <Flex alignItems="center" justifyContent="space-between" gap="7">
+            {/* Edit Button */}
+            <IconButton
+              aria-label="Edit"
+              as={RouterLink}
+              to="/editBlog"
+              icon={<MdEdit />}
+              // onClick={handleDelete}
+              colorScheme="gray"
+            />
+            {/* Delete Button */}
+            <IconButton
+              aria-label="Delete"
+              icon={<MdDelete />}
+              // onClick={handleDelete}
+              colorScheme="gray"
+            />
+          </Flex>
         </Flex>
+
         <Link
           as={RouterLink}
           to={`/blog/${blog._id}`}
