@@ -56,9 +56,9 @@ const Header = () => {
           fontWeight="bold"
           fontSize="25px"
           letterSpacing="wide"
-          fontFamily="Arial Black"
+          fontFamily=" Arial Black"
         >
-          Blogosphere
+          BlogoSphere
         </Heading>
       </Link>
 
