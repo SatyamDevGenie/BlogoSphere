@@ -6,8 +6,11 @@ import BlogPostScreen from "./screens/BlogPostScreen";
 import EditBlogScreen from "./screens/EditBlogScreen";
 import HomeScreen from "./screens/HomeScreen";
 import LatestBlogsScreen from "./screens/LatestBlogsScreen";
+import LoginScreen from "./screens/LoginScreen";
+import RegisterScreen from "./screens/RegisterScreen";
 import SingleBlogScreen from "./screens/SingleBlogScreen";
 import TrendingBlogsScreen from "./screens/TrendingBlogsScreen";
+import UserProfileScreen from "./screens/UserProfileScreen";
 
 const App = () => {
   return (
@@ -24,6 +27,9 @@ const App = () => {
         <Routes>
           <Route path="/" element={<HomeScreen />} />
           <Route path="/blog/:id" element={<SingleBlogScreen />} />
+          <Route path="/login" element={<LoginScreen />} />
+          <Route path="/register" element={<RegisterScreen />} />
+          <Route path="/userProfile" element={<UserProfileScreen />} />
           <Route path="/postBlog" element={<BlogPostScreen />} />
           <Route path="/editBlog" element={<EditBlogScreen />} />
           <Route path="/trendingBlogs" element={<TrendingBlogsScreen />} />

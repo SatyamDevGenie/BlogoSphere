@@ -1,12 +1,37 @@
-import { Box, Flex, Heading, Icon, Link } from "@chakra-ui/react";
+import {
+  Box,
+  Button,
+  Flex,
+  Heading,
+  Icon,
+  Link,
+  Menu,
+  MenuButton,
+  MenuItem,
+  MenuList,
+} from "@chakra-ui/react";
 import { useState } from "react";
 import { HiOutlineMenuAlt3, HiTrendingUp } from "react-icons/hi";
+import { IoChevronDown } from "react-icons/io5";
 import { RiLoginCircleFill } from "react-icons/ri";
-import { Link as RouterLink } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { Link as RouterLink, useNavigate } from "react-router-dom";
+import { logout } from "../actions/userActions";
 import HeaderMenuItem from "./HeaderMenuItem";
 
 const Header = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const [show, setShow] = useState(false);
+
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
+
+  const logoutHandler = () => {
+    dispatch(logout());
+    navigate("/login");
+  };
 
   return (
     <Flex
@@ -54,13 +79,32 @@ const Header = () => {
           label="Trending Blogs"
           icon={<Icon as={HiTrendingUp} mr="1" w="6" h="6" color="green" />}
         />
-        <HeaderMenuItem
-          url="/login"
-          label="Login"
-          icon={
-            <Icon as={RiLoginCircleFill} mr="1" w="6" h="6" color="green" />
-          }
-        />
+
+        {userInfo ? (
+          <Menu>
+            <MenuButton
+              as={Button}
+              rightIcon={<IoChevronDown />}
+              _hover={{ textDecor: "none", opacity: "0.7" }}
+            >
+              {userInfo.name}
+            </MenuButton>
+            <MenuList>
+              <MenuItem as={RouterLink} to="/userProfile">
+                Profile
+              </MenuItem>
+              <MenuItem onClick={logoutHandler}>Logout</MenuItem>
+            </MenuList>
+          </Menu>
+        ) : (
+          <HeaderMenuItem
+            url="/login"
+            label="Login"
+            icon={
+              <Icon as={RiLoginCircleFill} mr="1" w="6" h="6" color="green" />
+            }
+          />
+        )}
       </Box>
     </Flex>
   );
