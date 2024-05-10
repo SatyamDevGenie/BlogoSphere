@@ -9,7 +9,6 @@ import {
   Spacer,
   Text,
 } from "@chakra-ui/react";
-
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -17,9 +16,10 @@ import {
   useNavigate,
   useSearchParams,
 } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css"; // Import CSS for styling
 import { login } from "../actions/userActions";
 import FormContainer from "../components/FormContainer";
-import Message from "../components/Message";
 
 const LoginScreen = () => {
   const dispatch = useDispatch();
@@ -39,10 +39,17 @@ const LoginScreen = () => {
       navigate(redirect);
     }
   }, [navigate, userInfo, redirect]);
+
   const submitHandler = (e) => {
     e.preventDefault();
     dispatch(login(email, password));
   };
+
+  useEffect(() => {
+    if (error) {
+      toast.error(error); // Display error message
+    }
+  }, [error]);
 
   return (
     <Flex w="full" alignItems="center" justifyContent="center" py="5" mt="5">
@@ -50,8 +57,6 @@ const LoginScreen = () => {
         <Heading as="h1" mb="8" fontSize="3xl">
           Login
         </Heading>
-
-        {error && <Message type="error">{error}</Message>}
 
         <form onSubmit={submitHandler}>
           <FormControl id="email">
@@ -92,6 +97,7 @@ const LoginScreen = () => {
           </Text>
         </Flex>
       </FormContainer>
+      <ToastContainer /> {/* Render the ToastContainer component */}
     </Flex>
   );
 };

@@ -27,7 +27,13 @@ const BlogCard = ({ blog }) => {
         borderTopLeftRadius="lg"
         borderTopRightRadius="lg"
       />
-      <Flex py="5" px="4" direction="column" justifyContent="space-between">
+      <Flex
+        py="5"
+        px="4"
+        direction="column"
+        justifyContent="space-between"
+        bgColor="#eee"
+      >
         <Flex direction="row " justifyContent="space-between">
           <Flex alignItems="center" justifyContent="space-between">
             <Heading as="h4" fontSize="lg" mb="3">
@@ -56,7 +62,7 @@ const BlogCard = ({ blog }) => {
 
         <Link
           as={RouterLink}
-          to={`/blog/${blog._id}`}
+          to={`/blogs/${blog._id}`}
           fontFamily="Verdana"
           _hover={{
             textDecor: "none",

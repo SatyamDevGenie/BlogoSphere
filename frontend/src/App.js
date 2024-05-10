@@ -16,17 +16,10 @@ const App = () => {
   return (
     <BrowserRouter>
       <Header />
-      <Flex
-        as="main"
-        mt="72px"
-        direction="column"
-        py="6"
-        px="6"
-        bgColor="#FFFFFF"
-      >
+      <Flex as="main" mt="72px" direction="column" py="6" px="6" bgColor="#fff">
         <Routes>
           <Route path="/" element={<HomeScreen />} />
-          <Route path="/blog/:id" element={<SingleBlogScreen />} />
+          <Route path="/blogs/:id" element={<SingleBlogScreen />} />
           <Route path="/login" element={<LoginScreen />} />
           <Route path="/register" element={<RegisterScreen />} />
           <Route path="/userProfile" element={<UserProfileScreen />} />

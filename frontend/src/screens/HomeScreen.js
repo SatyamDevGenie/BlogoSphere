@@ -1,8 +1,9 @@
 import { Button, Flex, Grid, Heading } from "@chakra-ui/react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-
 import { Link as RouterLink } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { listBlogs } from "../actions/blogActions";
 import BlogCard from "../components/BlogCard";
 import Loader from "../components/Loader";
@@ -16,7 +17,13 @@ const HomeScreen = () => {
 
   useEffect(() => {
     dispatch(listBlogs());
+    // Show welcome message when component mounts
+    // toast.success("Welcome to Blogosphere!");
   }, [dispatch]);
+
+  useEffect(() => {
+    toast.success("Welcome to Blogosphere!");
+  }, []);
 
   const handleCreatePost = () => {
     // Add your logic here for creating a new blog post
@@ -29,6 +36,7 @@ const HomeScreen = () => {
 
   return (
     <>
+      <ToastContainer />
       <Flex justify="space-between" align="center">
         <Heading as="h2" mb="10" fontSize="25px" mt="4">
           All Blogs
@@ -38,8 +46,7 @@ const HomeScreen = () => {
           as={RouterLink}
           size="sm"
           to="/postBlog"
-          bg="#E6F6FF"
-          color="#1c1c50"
+          colorScheme="gray"
           border="2px solid #eee"
           fontFamily="Arial"
           fontWeight="bold"
@@ -55,8 +62,7 @@ const HomeScreen = () => {
           as={RouterLink}
           size="sm"
           to="/latestBlogs"
-          bg="#E6F6FF"
-          color="#1c1c50"
+          colorScheme="gray"
           border="2px solid #eee"
           fontFamily="Arial"
           fontWeight="bold"

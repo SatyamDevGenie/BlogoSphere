@@ -5,9 +5,10 @@ const FormContainer = ({ children, width = "xl" }) => {
     <Flex
       direction="column"
       boxShadow="lg"
-      rounded="md"
+      rounded="lg"
       bgColor="white"
-      border="1px solid wheat"
+      // border="15px solid whitesmoke"
+
       p="10"
       width={width}
     >

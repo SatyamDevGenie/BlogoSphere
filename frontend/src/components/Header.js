@@ -11,8 +11,8 @@ import {
   MenuList,
 } from "@chakra-ui/react";
 import { useState } from "react";
+import { FaCircleChevronDown } from "react-icons/fa6";
 import { HiOutlineMenuAlt3, HiTrendingUp } from "react-icons/hi";
-import { IoChevronDown } from "react-icons/io5";
 import { RiLoginCircleFill } from "react-icons/ri";
 import { useDispatch, useSelector } from "react-redux";
 import { Link as RouterLink, useNavigate } from "react-router-dom";
@@ -84,8 +84,8 @@ const Header = () => {
           <Menu>
             <MenuButton
               as={Button}
-              rightIcon={<IoChevronDown />}
-              _hover={{ textDecor: "none", opacity: "0.7" }}
+              rightIcon={<FaCircleChevronDown />}
+              _hover={{ textDecor: "none", opacity: "0.8" }}
             >
               {userInfo.name}
             </MenuButton>

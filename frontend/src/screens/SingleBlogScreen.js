@@ -101,8 +101,8 @@ const SingleBlogScreen = () => {
       <Button
         as={RouterLink}
         to="/"
-        colorScheme="blue"
-        size="sm"
+        colorScheme="cyan"
+        size="md"
         mb="4"
         alignSelf="flex-start"
       >
@@ -117,7 +117,7 @@ const SingleBlogScreen = () => {
         <Message type="error">{error}</Message>
       ) : (
         <Grid
-          templateColumns={{ sm: "1fr", md: "4fr 3fr" }}
+          templateColumns={{ sm: "1fr", md: " 5fr 3fr" }}
           gap={{ base: "4", md: "8" }}
           maxWidth="1200px"
           width="100%"
@@ -134,7 +134,12 @@ const SingleBlogScreen = () => {
           {/* BLOG Details */}
           <Flex direction="column" alignItems="flex-start">
             {/* BLOG title */}
-            <Heading as="h2" fontSize="4xl" mb="4">
+            <Heading
+              as="h2"
+              fontSize="4xl"
+              mb="4"
+              fontFamily="Arial Black, Georgia"
+            >
               {blog.title}
             </Heading>
 
@@ -144,9 +149,14 @@ const SingleBlogScreen = () => {
             </Text>
 
             {/* Additional Information */}
-            <Flex alignItems="center" justifyContent="space-between" gap="20">
-              <Text fontSize="2xl" fontWeight="bold" color="blue.600">
-                {blog.author}
+            <Flex alignItems="center" justifyContent="space-between" gap="5">
+              <Text
+                fontSize="3xl"
+                fontWeight="bold"
+                color="blue.600"
+                fontFamily="Arial Black, Georgia"
+              >
+                {/* {blog.author} */} Ratings:
               </Text>
               <Rating value={blog.rating} color="yellow.500" />
             </Flex>
