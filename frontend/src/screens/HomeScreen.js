@@ -46,11 +46,11 @@ const HomeScreen = () => {
           as={RouterLink}
           size="sm"
           to="/postBlog"
-          colorScheme="gray"
-          border="2px solid #eee"
+          colorScheme="teal"
+          border="1px solid #fff"
           fontFamily="Arial"
           fontWeight="bold"
-          p={{ base: "10px", md: "22px" }}
+          p={{ base: "18px", md: "22px" }}
           onClick={handleCreatePost}
         >
           Create Post
@@ -62,11 +62,11 @@ const HomeScreen = () => {
           as={RouterLink}
           size="sm"
           to="/latestBlogs"
-          colorScheme="gray"
-          border="2px solid #eee"
+          colorScheme="teal"
+          border="1px solid #fff"
           fontFamily="Arial"
           fontWeight="bold"
-          p={{ base: "10px", md: "22px" }}
+          p={{ base: "18px", md: "22px" }}
           onClick={handleLatesPost}
         >
           Latest Blogs
@@ -89,7 +89,7 @@ const HomeScreen = () => {
             lg: "1fr 1fr 1fr",
             xl: "1fr 1fr 1fr ",
           }}
-          gap="10"
+          gap="12"
           mt="10"
         >
           {blogs.map((blog) => (

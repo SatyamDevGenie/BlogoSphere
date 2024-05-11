@@ -101,9 +101,12 @@ const SingleBlogScreen = () => {
       <Button
         as={RouterLink}
         to="/"
-        colorScheme="cyan"
-        size="md"
-        mb="4"
+        size="sm"
+        colorScheme="teal"
+        border="1px solid #fff"
+        fontFamily="Arial"
+        fontWeight="bold"
+        p={{ base: "10px", md: "22px" }}
         alignSelf="flex-start"
       >
         Go Back
@@ -117,7 +120,7 @@ const SingleBlogScreen = () => {
         <Message type="error">{error}</Message>
       ) : (
         <Grid
-          templateColumns={{ sm: "1fr", md: " 5fr 3fr" }}
+          templateColumns={{ sm: "1fr", md: " 6fr 3fr" }}
           gap={{ base: "4", md: "8" }}
           maxWidth="1200px"
           width="100%"
@@ -127,7 +130,7 @@ const SingleBlogScreen = () => {
             src={blog.image}
             alt={blog.title}
             borderRadius="md"
-            maxH="600px"
+            maxH="500px"
             w="full"
           />
 

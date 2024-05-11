@@ -16,7 +16,7 @@ const App = () => {
   return (
     <BrowserRouter>
       <Header />
-      <Flex as="main" mt="72px" direction="column" py="6" px="6" bgColor="#fff">
+      <Flex as="main" mt="72px" direction="column" py="6" px="6">
         <Routes>
           <Route path="/" element={<HomeScreen />} />
           <Route path="/blogs/:id" element={<SingleBlogScreen />} />

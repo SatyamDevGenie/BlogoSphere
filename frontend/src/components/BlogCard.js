@@ -8,6 +8,11 @@ const BlogCard = ({ blog }) => {
   //   // Call onDelete function with the blog id or any necessary identifier for deletion
   //   onDelete(); // Assuming blog._id is the identifier
   // };
+  // Pass onDelete function as a prop
+  const handleDelete = () => {
+    // Call onDelete function with the blog id or any necessary identifier for deletion
+    console.log("delete button clicked"); // Assuming blog._id is the identifier
+  };
 
   return (
     <Box
@@ -32,7 +37,7 @@ const BlogCard = ({ blog }) => {
         px="4"
         direction="column"
         justifyContent="space-between"
-        bgColor="#eee"
+        bgColor="#FAF9F9"
       >
         <Flex direction="row " justifyContent="space-between">
           <Flex alignItems="center" justifyContent="space-between">
@@ -47,7 +52,7 @@ const BlogCard = ({ blog }) => {
               as={RouterLink}
               to="/editBlog"
               icon={<MdEdit />}
-              // onClick={handleDelete}
+              onClick={handleDelete}
               colorScheme="gray"
             />
             {/* Delete Button */}
