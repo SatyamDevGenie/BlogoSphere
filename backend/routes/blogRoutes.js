@@ -1,18 +1,3 @@
-// import express from "express";
-// import {
-//   createBlog,
-//   getBlogById,
-//   getBlogs,
-// } from "../controllers/blogControllers.js";
-// import { protect } from "../middlwares/authMiddleware.js";
-
-// const router = express.Router();
-
-// router.route("/").get(getBlogs).post(protect, createBlog);
-// router.route("/:id").get(getBlogById);
-
-// export default router;
-
 import express from "express";
 import {
   createBlog,
@@ -21,15 +6,15 @@ import {
   getBlogs,
   updateBlog,
 } from "../controllers/blogControllers.js";
-import { protect } from "../middlwares/authMiddleware.js";
+import { protect } from "../middlwares/authMiddleware.js"; // Middleware
 
 const router = express.Router();
 
-router.route("/").get(getBlogs).post(protect, createBlog);
+router.route("/").get(getBlogs).post(protect, createBlog); //  "/" route for all blogs and create new blog
 router
   .route("/:id")
   .get(getBlogById)
   .put(protect, updateBlog)
-  .delete(protect, deleteBlog);
+  .delete(protect, deleteBlog); //  "/:id" route for update blog, det single blog, delete blog
 
 export default router;
