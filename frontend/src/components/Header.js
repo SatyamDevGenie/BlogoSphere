@@ -56,7 +56,7 @@ const Header = () => {
           fontWeight="bold"
           fontSize="30px"
           letterSpacing="wide"
-          fontFamily=" Arial"
+          fontFamily=" M PLUS Rounded 1c"
         >
           Blogosphere
         </Heading>

@@ -80,16 +80,16 @@ const SingleBlogScreen = () => {
             </Text>
 
             {/* Additional Information */}
-            <Flex alignItems="center" justifyContent="space-between" gap="5">
+            <Flex alignItems="center" gap="8" justifyContent="space-between">
               <Text
-                fontSize="2xl"
+                fontSize="20px"
                 fontWeight="bold"
-                color="blue.600"
-                fontFamily="Georgia"
+                color="#000"
+                fontFamily="Verdana, Arial Black"
               >
-                {/* {blog.author} */} Ratings:
+                {`Author: ${blog.author}`}
               </Text>
-              <Rating value={blog.rating} color="yellow.500" />
+              <Rating value={blog.rating} color="yellow.500" size="lg" />
             </Flex>
           </Flex>
         </Grid>
