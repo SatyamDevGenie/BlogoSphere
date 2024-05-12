@@ -16,10 +16,10 @@ const BlogCard = ({ blog }) => {
 
   return (
     <Box
-      borderRadius="lg"
+      borderRadius="15"
+      shadow="lg"
       _hover={{
-        shadow: "lg",
-        transform: "translateY(-10px)",
+        transform: "translateY(-20px)",
         transition: "all 0.3s ease-in-out",
       }}
     >
@@ -33,15 +33,15 @@ const BlogCard = ({ blog }) => {
         borderTopRightRadius="lg"
       />
       <Flex
-        py="5"
-        px="4"
+        py="6"
+        px="6"
         direction="column"
         justifyContent="space-between"
-        bgColor="#FAF9F9"
+        bgColor="gray.75"
       >
         <Flex direction="row " justifyContent="space-between">
           <Flex alignItems="center" justifyContent="space-between">
-            <Heading as="h4" fontSize="lg" mb="3">
+            <Heading as="h4" fontSize="lg" mb="3" fontFamily="Verdana">
               {blog.title}
             </Heading>
           </Flex>

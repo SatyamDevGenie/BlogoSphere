@@ -12,10 +12,15 @@ const HeaderMenuItem = ({ url, label, icon }) => {
       mr="5"
       display="flex"
       alignItems="center"
-      color="#1c1c50"
+      color="#000"
       fontWeight="bold"
+      fontFamily="Arial Black, Verdana"
       mb={{ base: "2", md: 0 }}
-      _hover={{ textDecor: "none", color: "black" }}
+      _hover={{
+        textDecor: "none",
+        transition: "all 0.3s ease-in-out",
+        transform: "translateY(-2px)",
+      }}
     >
       {icon}
       {label}

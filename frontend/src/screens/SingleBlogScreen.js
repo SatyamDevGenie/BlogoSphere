@@ -1,79 +1,3 @@
-// import { Button, Flex, Grid, Heading, Image, Text } from "@chakra-ui/react";
-// import axios from "axios";
-// import { useEffect, useState } from "react";
-// import { Link as RouterLink, useParams } from "react-router-dom";
-
-// const SingleBlogScreen = () => {
-//   const { id } = useParams();
-
-//   const [blog, setBlog] = useState({});
-
-//   useEffect(() => {
-//     const fetchBlog = async () => {
-//       const { data } = await axios.get(`/api/blogs/${id}`);
-//       setBlog(data);
-//     };
-//     fetchBlog();
-//   }, [id]);
-
-//   return (
-//     <Flex direction="column" alignItems="center" mt="6">
-//       {/* Go Back Button */}
-//       <Button
-//         as={RouterLink}
-//         to="/"
-//         colorScheme="blue"
-//         size="sm"
-//         mb="4"
-//         alignSelf="flex-start"
-//         // ml="8"
-//       >
-//         Go Back
-//       </Button>
-
-//       {/* Product Grid */}
-//       <Grid
-//         templateColumns={{ sm: "1fr", md: "4fr 3fr" }}
-//         gap={{ base: "4", md: "8" }}
-//         maxWidth="1200px"
-//         width="100%"
-//       >
-//         {/* Product Image */}
-//         <Image
-//           src={blog.image}
-//           alt={blog.name}
-//           borderRadius="md"
-//           maxH="600px"
-//           w="full"
-//         />
-
-//         {/* Product Details */}
-//         <Flex direction="column" alignItems="flex-start">
-//           {/* Product Name */}
-//           <Heading as="h2" fontSize="4xl" mb="4" fontFamily="Georgia">
-//             {blog.title}
-//           </Heading>
-
-//           {/* Product Description */}
-//           <Text fontSize="lg" mb="6" fontFamily="sans-serif" display="inline">
-//             {blog.content}
-//           </Text>
-
-//           {/* Additional Information */}
-//           <Flex direction="column" alignItems="flex-start">
-//             {/* Author */}
-//             <Text fontSize="lg" mb="2">
-//               <strong>Author:</strong> {blog.author}
-//             </Text>
-//           </Flex>
-//         </Flex>
-//       </Grid>
-//     </Flex>
-//   );
-// };
-
-// export default SingleBlogScreen;
-
 import { Button, Flex, Grid, Heading, Image, Text } from "@chakra-ui/react";
 
 import { useEffect } from "react";
@@ -120,44 +44,48 @@ const SingleBlogScreen = () => {
         <Message type="error">{error}</Message>
       ) : (
         <Grid
-          templateColumns={{ sm: "1fr", md: " 6fr 3fr" }}
+          templateColumns={{ sm: "1fr", md: "1fr" }}
           gap={{ base: "4", md: "8" }}
           maxWidth="1200px"
           width="100%"
+          mt="8"
         >
-          {/* BLOG Image */}
-          <Image
-            src={blog.image}
-            alt={blog.title}
-            borderRadius="md"
-            maxH="500px"
-            w="full"
-          />
-
           {/* BLOG Details */}
           <Flex direction="column" alignItems="flex-start">
             {/* BLOG title */}
-            <Heading
-              as="h2"
-              fontSize="4xl"
-              mb="4"
-              fontFamily="Arial Black, Georgia"
-            >
+            <Heading as="h2" fontSize="4xl" mb="4" fontFamily="Verdana">
               {blog.title}
             </Heading>
 
+            {/* BLOG Image */}
+
+            <Image
+              src={blog.image}
+              alt={blog.title}
+              borderRadius="10px"
+              h={{ base: "300px", md: "400px" }}
+              w="full"
+              objectFit="fill"
+            />
+
             {/* BLOG Description */}
-            <Text fontSize="lg" mb="6">
+            <Text
+              fontSize="lg"
+              mb="6"
+              fontFamily="Verdana"
+              textAlign="justify"
+              mt="3"
+            >
               {blog.content}
             </Text>
 
             {/* Additional Information */}
             <Flex alignItems="center" justifyContent="space-between" gap="5">
               <Text
-                fontSize="3xl"
+                fontSize="2xl"
                 fontWeight="bold"
                 color="blue.600"
-                fontFamily="Arial Black, Georgia"
+                fontFamily="Georgia"
               >
                 {/* {blog.author} */} Ratings:
               </Text>

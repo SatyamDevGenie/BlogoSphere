@@ -7,7 +7,7 @@ const Footer = () => {
       align="center"
       justify="center"
       direction={{ base: "column", md: "row" }}
-      bg="#F5F5F5"
+      bg="gray.200"
       py="6"
       shadow="lg"
       mt="4"
@@ -21,7 +21,7 @@ const Footer = () => {
           fontFamily="Arial"
           textAlign={{ base: "center", md: "left" }}
         >
-          © Blogosphere {new Date().getFullYear()} All rights reserved
+          © Blogosphere {new Date().getFullYear()}
         </Text>
       </Box>
       <Box flex="1">

@@ -41,7 +41,7 @@ const Header = () => {
       wrap="wrap"
       py="6"
       px="6"
-      bgColor="#F5F5F5"
+      bgColor="teal.400"
       w="100%"
       pos="fixed"
       top="0"
@@ -52,13 +52,13 @@ const Header = () => {
       <Link as={RouterLink} to="/" style={{ textDecoration: "none" }}>
         <Heading
           as="h1"
-          color="#1c1c50"
+          color="#fff"
           fontWeight="bold"
-          fontSize="25px"
+          fontSize="30px"
           letterSpacing="wide"
-          fontFamily=" Arial Black"
+          fontFamily=" Arial"
         >
-          BlogoSphere
+          Blogosphere
         </Heading>
       </Link>
 
@@ -76,7 +76,7 @@ const Header = () => {
       >
         <HeaderMenuItem
           url="/trendingBlogs"
-          label="Trending Blogs"
+          label="Trending"
           icon={<Icon as={HiTrendingUp} mr="1" w="6" h="6" color="green" />}
         />
 
