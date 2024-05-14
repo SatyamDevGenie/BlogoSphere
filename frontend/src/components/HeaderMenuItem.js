@@ -6,7 +6,7 @@ const HeaderMenuItem = ({ url, label, icon }) => {
     <Link
       as={RouterLink}
       to={url}
-      fontSize="md"
+      fontSize="18px"
       letterSpacing="wide"
       textTransform="capitalize"
       mr="5"
@@ -14,7 +14,7 @@ const HeaderMenuItem = ({ url, label, icon }) => {
       alignItems="center"
       color="#000"
       fontWeight="bold"
-      fontFamily="Arial Black, Verdana"
+      fontFamily=" M PLUS Rounded 1c"
       mb={{ base: "2", md: 0 }}
       _hover={{
         textDecor: "none",
