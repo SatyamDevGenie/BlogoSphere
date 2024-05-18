@@ -1,5 +1,6 @@
 import express from "express";
 import {
+  addBlogReview,
   createBlog,
   deleteBlog,
   getBlogById,
@@ -16,5 +17,7 @@ router
   .get(getBlogById)
   .put(protect, updateBlog)
   .delete(protect, deleteBlog); //  "/:id" route for update blog, det single blog, delete blog
+
+router.route("/:id/reviews").post(protect, addBlogReview); // review on particular blog
 
 export default router;

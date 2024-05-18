@@ -1,33 +1,21 @@
+
+
 import mongoose from "mongoose";
 
 const reviewSchema = mongoose.Schema(
   {
-    title: {
-      type: String,
-      required: true,
-    },
     comment: {
+      user: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
+        required: true,
+      }, // Add user field
       type: String,
       required: true,
     },
+
     rating: {
       type: Number,
-      required: true,
-    },
-
-    author: {
-      type: String,
-      required: true,
-    },
-
-    user: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
-      required: true,
-    },
-    blog: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Blog",
       required: true,
     },
   },
@@ -53,8 +41,11 @@ const blogSchema = mongoose.Schema(
       type: String,
       required: true,
     },
-
-    rating: {
+    // ratings: {
+    //   type: Number,
+    //   required: true,
+    // },
+    ratings: {
       type: Number,
       required: true,
       default: 0,

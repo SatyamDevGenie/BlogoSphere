@@ -53,7 +53,7 @@ const SingleBlogScreen = () => {
           {/* BLOG Details */}
           <Flex direction="column" alignItems="flex-start">
             {/* BLOG title */}
-            <Heading as="h2" fontSize="4xl" mb="4" fontFamily="Verdana">
+            <Heading as="h2" fontSize="3xl" mb="4" fontFamily="Verdana">
               {blog.title}
             </Heading>
 
@@ -66,6 +66,7 @@ const SingleBlogScreen = () => {
               h={{ base: "300px", md: "400px" }}
               w="full"
               objectFit="fill"
+              mt="5"
             />
 
             {/* BLOG Description */}
@@ -81,15 +82,10 @@ const SingleBlogScreen = () => {
 
             {/* Additional Information */}
             <Flex alignItems="center" gap="8" justifyContent="space-between">
-              <Text
-                fontSize="20px"
-                fontWeight="bold"
-                color="#000"
-                fontFamily="Verdana, Arial Black"
-              >
-                {`Author: ${blog.author}`}
-              </Text>
-              <Rating value={blog.rating} color="yellow.500" size="lg" />
+              <Heading size="lg" fontFamily="Verdana">
+                Ratings:
+              </Heading>
+              <Rating value={blog.ratings} color="yellow.500" size="lg" />
             </Flex>
           </Flex>
         </Grid>

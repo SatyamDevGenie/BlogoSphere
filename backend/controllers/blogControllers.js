@@ -99,4 +99,46 @@ const deleteBlog = asyncHandler(async (req, res) => {
   }
 });
 
-export { createBlog, deleteBlog, getBlogById, getBlogs, updateBlog };
+/**
+ * @desc    Add review comment and rating to a blog
+ * @route   POST /api/blogs/:id/addReview
+ * @access  private
+ */
+
+const addBlogReview = asyncHandler(async (req, res) => {
+  const { comment, rating } = req.body;
+  const blogId = req.params.id;
+  const userId = req.user._id; // Assuming you have user information in the request
+
+  try {
+    const blog = await Blog.findById(blogId);
+
+    if (!blog) {
+      return res.status(404).json({ message: "Blog not found" });
+    }
+
+    // Add the review to the blog
+    blog.reviews.push({ user: userId, comment, rating });
+    // Recalculate the average rating
+    blog.ratings = (
+      blog.reviews.reduce((total, review) => total + review.rating, 0) /
+      blog.reviews.length
+    ).toFixed(1); // Round to 1 decimal place
+
+    // Save the updated blog
+    await blog.save();
+    res.status(201).json({ message: "Review added successfully" });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Server Error" });
+  }
+});
+
+export {
+  addBlogReview,
+  createBlog,
+  deleteBlog,
+  getBlogById,
+  getBlogs,
+  updateBlog,
+};
