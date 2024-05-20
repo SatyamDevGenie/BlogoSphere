@@ -6,6 +6,11 @@ const userSchema = mongoose.Schema(
     name: {
       type: String,
       required: true,
+      blog: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Blog",
+        // required: true,
+      },
     },
     email: {
       type: String,
