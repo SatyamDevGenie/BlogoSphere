@@ -62,15 +62,13 @@ export const register = (name, email, password) => async (dispatch) => {
     };
 
     const { data } = await axios.post(
-      `/api/users/`,
+      "/api/users",
       { name, email, password },
       config
     );
 
     dispatch({ type: USER_REGISTER_SUCCESS, payload: data });
     dispatch({ type: USER_LOGIN_SUCCESS, payload: data });
-
-    localStorage.setItem("userInfo", JSON.stringify(data));
   } catch (err) {
     dispatch({
       type: USER_REGISTER_FAIL,
@@ -87,7 +85,7 @@ export const getUserDetails = () => async (dispatch, getState) => {
     dispatch({ type: USER_DETAILS_REQUEST });
 
     const {
-      userLogin: { userInfo },
+      userLogin: { userInfo }, //2 level destructuring
     } = getState();
 
     const config = {
@@ -115,7 +113,7 @@ export const updateUserProfile = (user) => async (dispatch, getState) => {
     dispatch({ type: USER_UPDATE_PROFILE_REQUEST });
 
     const {
-      userLogin: { userInfo },
+      userLogin: { userInfo }, // 2 level destructuring
     } = getState();
 
     const config = {

@@ -7,17 +7,16 @@ import {
   getBlogs,
   updateBlog,
 } from "../controllers/blogControllers.js";
-import { protect } from "../middlwares/authMiddleware.js"; // Middleware
+import { protect } from "../middlewares/authMiddleware.js";
 
 const router = express.Router();
 
-router.route("/").get(getBlogs).post(protect, createBlog); //  "/" route for all blogs and create new blog
+router.route("/").get(getBlogs).post(protect, createBlog);
 router
   .route("/:id")
   .get(getBlogById)
   .put(protect, updateBlog)
-  .delete(protect, deleteBlog); //  "/:id" route for update blog, det single blog, delete blog
-
-router.route("/:id/reviews").post(protect, addBlogReview); // review on particular blog
+  .delete(protect, deleteBlog);
+router.route("/:id/reviews").post(protect, addBlogReview); //for adding comment
 
 export default router;

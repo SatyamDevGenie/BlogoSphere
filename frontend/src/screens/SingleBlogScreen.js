@@ -1,21 +1,29 @@
 import {
   Box,
   Button,
+  Divider,
   Flex,
   FormControl,
   FormLabel,
   Grid,
   Heading,
+  IconButton,
   Image,
+  Link,
   Select,
   Text,
   Textarea,
 } from "@chakra-ui/react";
-
 import { useEffect, useState } from "react";
+import { FaEdit } from "react-icons/fa";
+import { MdDelete } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
-import { Link as RouterLink, useParams } from "react-router-dom";
-import { createBlogReview, listBlogDetails } from "../actions/blogActions";
+import { Link as RouterLink, useNavigate, useParams } from "react-router-dom";
+import {
+  createBlogReview,
+  deleteBlog,
+  listBlogDetails,
+} from "../actions/blogActions";
 import Loader from "../components/Loader";
 import Message from "../components/Message";
 import Rating from "../components/Rating";
@@ -23,13 +31,14 @@ import { BLOG_REVIEW_CREATE_RESET } from "../constants/blogConstants";
 
 const SingleBlogScreen = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { id } = useParams();
 
   const [rating, setRating] = useState(1);
   const [comment, setComment] = useState("");
   const [name, setName] = useState("");
 
-  const blogDetails = useSelector((state) => state.blogDetail);
+  const blogDetails = useSelector((state) => state.blogDetails);
   const { loading, error, blog } = blogDetails;
 
   const userLogin = useSelector((state) => state.userLogin);
@@ -53,6 +62,13 @@ const SingleBlogScreen = () => {
   const submitHandler = (e) => {
     e.preventDefault();
     dispatch(createBlogReview(id, { rating, comment, name }));
+  };
+
+  const deleteHandler = (id) => {
+    if (window.confirm("Are you sure?")) {
+      dispatch(deleteBlog(id));
+      navigate(`/`);
+    }
   };
 
   return (
@@ -99,10 +115,10 @@ const SingleBlogScreen = () => {
               <Image
                 src={blog.image}
                 alt={blog.title}
-                borderRadius="10px"
-                h={{ base: "300px", md: "400px" }}
+                borderRadius="15px"
+                h={{ base: "300px", md: "500px" }}
                 w="full"
-                objectFit="fill"
+                objectFit="cover"
               />
 
               {/* BLOG Description */}
@@ -116,22 +132,84 @@ const SingleBlogScreen = () => {
                 {blog.content}
               </Text>
 
+              <Divider />
               {/* Additional Information */}
               <Flex
-                alignItems="center"
                 justifyContent="space-between"
-                direction="row"
-                gap="8"
+                direction="column"
+                gap="5"
+                w="full"
               >
-                {/* <Text
-                fontSize="20px"
-                fontWeight="bold"
-                color="#000"
-                fontFamily="Verdana, Arial Black"
-              >
-                {`Author: ${blog.author}`}
-              </Text> */}
-                <Rating value={blog.ratings} color="yellow.500" size="lg" />
+                <Text fontSize="17px" color="#000" fontFamily="Verdana">
+                  Blog created by:
+                  <u> {blog.author && blog.author.name}</u>
+                </Text>
+                <Text fontSize="17px" color="#000" fontFamily="Verdana">
+                  Author:
+                  <Link
+                    fontSize="17px"
+                    href={`mailto:${blog.author && blog.author.email}`}
+                  >
+                    {blog.author && blog.author.email}
+                  </Link>
+                </Text>
+
+                {/* Conditionally render Delete Button */}
+                <Flex
+                  justifyContent={{
+                    sm: "center",
+                    base: "center",
+                    md: "space-between",
+                  }}
+                  direction={{ sm: "column", base: "column", md: "row" }}
+                  gap={{ sm: "2", base: 4, md: 10 }}
+                  w={{ sm: "full", base: "100%", md: "full" }}
+                >
+                  {blog.author && blog.author.email === userInfo?.email ? (
+                    <IconButton
+                      aria-label="Delete"
+                      icon={<MdDelete />}
+                      colorScheme="gray"
+                      w="300px"
+                      h="50px"
+                      _hover={{
+                        textDecor: "none",
+                        bgColor: "red",
+                        fontWeight: "bolder",
+                        shadow: "lg",
+                        transform: "translateY(-10px)",
+                        transition: "all 0.3s ease-in-out",
+                      }}
+                      onClick={() => deleteHandler(blog._id)}
+                    />
+                  ) : (
+                    <Text>Can only be deleted by Author</Text>
+                  )}
+
+                  {blog.author && blog.author.email === userInfo?.email ? (
+                    <IconButton
+                      aria-label="Edit"
+                      icon={<FaEdit />}
+                      colorScheme="gray"
+                      // size="800px"
+                      w="300px"
+                      h="50px"
+                      _hover={{
+                        textDecor: "none",
+                        bgColor: "beige",
+                        fontWeight: "bolder",
+                        shadow: "lg",
+                        transform: "translateY(-10px)",
+                        transition: "all 0.3s ease-in-out",
+                      }}
+                      onClick={() => {
+                        navigate(`/editBlog/${id}`);
+                      }}
+                    />
+                  ) : (
+                    <Text>Can only be edited by Author</Text>
+                  )}
+                </Flex>
               </Flex>
             </Flex>
           </Grid>
@@ -147,11 +225,13 @@ const SingleBlogScreen = () => {
               Write a review
             </Heading>
 
-            {blog.reviews.length === 0 && <Message>No Reviews</Message>}
+            {blog && blog.reviews?.length === 0 && (
+              <Message>No Reviews</Message>
+            )}
 
-            {blog.reviews.length !== 0 && (
+            {blog && blog.reviews?.length !== 0 && (
               <Box p="4" bgColor="white.900" rounded="md" mb="1" mt="5">
-                {blog.reviews.map((review) => (
+                {blog?.reviews?.map((review) => (
                   <Flex direction="column" key={review._id} mb="5" w="full">
                     <Flex justifyContent="space-between">
                       <Text fontSize="lg">

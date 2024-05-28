@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 import BlogPostScreen from "./screens/BlogPostScreen";
+import DeleteBlogScreen from "./screens/DeleteBlogScreen";
 import EditBlogScreen from "./screens/EditBlogScreen";
 import HomeScreen from "./screens/HomeScreen";
 import LatestBlogsScreen from "./screens/LatestBlogsScreen";
@@ -22,7 +23,7 @@ const App = () => {
         direction="column"
         py="6"
         px="6"
-        bg="whiteAlpha.900"
+        bgColor="WhiteAlpha.900"
       >
         <Routes>
           <Route path="/" element={<HomeScreen />} />
@@ -31,7 +32,8 @@ const App = () => {
           <Route path="/register" element={<RegisterScreen />} />
           <Route path="/userProfile" element={<UserProfileScreen />} />
           <Route path="/postBlog" element={<BlogPostScreen />} />
-          <Route path="/editBlog" element={<EditBlogScreen />} />
+          <Route path="/editBlog/:blogId" element={<EditBlogScreen />} />
+          <Route path="/deleteBlog" element={<DeleteBlogScreen />} />
           <Route path="/trendingBlogs" element={<TrendingBlogsScreen />} />
           <Route path="/latestBlogs" element={<LatestBlogsScreen />} />
         </Routes>

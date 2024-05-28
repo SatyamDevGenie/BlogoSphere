@@ -1,4 +1,5 @@
 import asyncHandler from "express-async-handler";
+
 import User from "../models/userModel.js";
 import generateToken from "../utils/generateToken.js";
 
@@ -73,6 +74,8 @@ const registerUser = asyncHandler(async (req, res) => {
       isAdmin: user.isAdmin,
       token: generateToken(user._id),
     });
+
+    // res.status(201).json({ message: "Account created successsfullly" });
   } else {
     res.status(400);
     throw new Error("Invalid user data");
@@ -97,11 +100,11 @@ const updateUserProfile = asyncHandler(async (req, res) => {
     const updatedUser = await user.save();
 
     res.json({
-      _id: user._id,
-      name: user.name,
-      email: user.email,
-      isAdmin: user.isAdmin,
-      token: generateToken(user._id),
+      _id: updatedUser._id,
+      name: updatedUser.name,
+      email: updatedUser.email,
+      isAdmin: updatedUser.isAdmin,
+      token: generateToken(updatedUser._id),
     });
   } else {
     res.status(404);

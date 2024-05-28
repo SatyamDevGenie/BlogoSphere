@@ -15,6 +15,9 @@ const HomeScreen = () => {
   const blogsList = useSelector((state) => state.blogList);
   const { loading, error, blogs } = blogsList;
 
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
+
   useEffect(() => {
     dispatch(listBlogs());
     // Show welcome message when component mounts
@@ -25,63 +28,81 @@ const HomeScreen = () => {
     toast.success("Welcome to Blogosphere!");
   }, []);
 
+  useEffect(() => {
+    if (userInfo) {
+      toast.success(`${userInfo.name} Logged In!! `);
+    }
+  }, [userInfo]);
+
   const handleCreatePost = () => {
     // Add your logic here for creating a new blog post
-    console.log("Create post clicked");
+    //console.log("Create post clicked");
   };
 
   const handleLatesPost = () => {
-    console.log("Latest Blog clicked");
+    //console.log("Latest Blog clicked");
   };
 
   return (
     <>
       <ToastContainer />
       <Flex justify="space-between" align="center">
-        <Heading as="h2" mb="10" fontSize="25px" mt="4" fontFamily="Arial">
+        <Heading as="h2" mb="10" fontSize="25px" mt="4" fontFamily="Arial ">
           All Blogs
         </Heading>
+      </Flex>
 
+      <Flex justifyContent="space-between" direction="row">
         <Button
           as={RouterLink}
-          size="sm"
+          size="lg"
           to="/postBlog"
           colorScheme="teal"
           border="1px solid #fff"
-          fontFamily="Arial"
+          fontFamily=" Arial"
           fontWeight="bold"
           p={{ base: "18px", md: "22px" }}
           onClick={handleCreatePost}
+          _hover={{
+            textDecor: "none",
+            bgColor: "green",
+            fontWeight: "bolder",
+            shadow: "lg",
+            transform: "translateY(-10px)",
+            transition: "all 0.3s ease-in-out",
+          }}
         >
           Create Post
         </Button>
-      </Flex>
 
-      <Flex>
         <Button
           as={RouterLink}
-          size="sm"
+          size="lg"
           to="/latestBlogs"
           colorScheme="teal"
           border="1px solid #fff"
-          fontFamily="Arial"
+          fontFamily=" Arial"
           fontWeight="bold"
           p={{ base: "18px", md: "22px" }}
           onClick={handleLatesPost}
+          _hover={{
+            textDecor: "none",
+            bgColor: "green",
+            fontWeight: "bolder",
+            shadow: "lg",
+            transform: "translateY(-10px)",
+            transition: "all 0.3s ease-in-out",
+          }}
         >
           Latest Blogs
         </Button>
       </Flex>
 
       {loading ? (
-        // <p>Loading.....</p>
         <Loader />
-      ) : // <Loading />
-      error ? (
-        // <p>{error}</p>
+      ) : error ? (
         <Message type="error">{error}</Message>
       ) : (
-        // <ErrorMessage />
         <Grid
           templateColumns={{
             sm: "1fr",

@@ -1,84 +1,72 @@
-import { Box, Flex, Heading, IconButton, Image, Link } from "@chakra-ui/react";
-import { MdDelete, MdEdit } from "react-icons/md";
+import {
+  Box,
+  Flex,
+  Heading,
+  IconButton,
+  Image,
+  Link,
+  Text,
+} from "@chakra-ui/react";
+import { IoEyeOutline } from "react-icons/io5";
+import { useSelector } from "react-redux";
 import { Link as RouterLink } from "react-router-dom";
 
 const BlogCard = ({ blog }) => {
-  // // Pass onDelete function as a prop
-  // const handleDelete = () => {
-  //   // Call onDelete function with the blog id or any necessary identifier for deletion
-  //   onDelete(); // Assuming blog._id is the identifier
-  // };
-  // Pass onDelete function as a prop
-  const handleDelete = () => {
-    // Call onDelete function with the blog id or any necessary identifier for deletion
-    console.log("delete button clicked"); // Assuming blog._id is the identifier
+  const getRandomInt = (min, max) => {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1)) + min;
   };
 
+  const randomNumber = getRandomInt(1, 50);
+
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
+
   return (
-    <Box
-      borderRadius="15"
-      shadow="lg"
+    <Link
+      as={RouterLink}
+      to={`/blogs/${blog._id}`}
+      fontFamily="Verdana"
       _hover={{
-        transform: "translateY(-20px)",
-        transition: "all 0.3s ease-in-out",
+        textDecor: "none",
+        fontWeight: "bolder",
       }}
     >
-      <Image
-        src={blog.image}
-        alt={blog.title}
-        w="full"
-        h="200px"
-        objectFit="fit"
-        borderTopLeftRadius="lg"
-        borderTopRightRadius="lg"
-      />
-      <Flex
-        py="6"
-        px="6"
-        direction="column"
-        justifyContent="space-between"
-        bgColor="gray.75"
+      <Box
+        borderRadius="30"
+        _hover={{
+          shadow: "xl",
+          transform: "translateY(-15px)",
+          transition: "all 0.3s ease-in-out",
+        }}
+        bgColor="aliceblue"
       >
-        <Flex direction="row " justifyContent="space-between">
-          <Flex alignItems="center" justifyContent="space-between">
-            <Heading as="h4" fontSize="lg" mb="3" fontFamily="Verdana">
-              {blog.title}
-            </Heading>
-          </Flex>
-          <Flex alignItems="center" justifyContent="space-between" gap="7">
-            {/* Edit Button */}
-            <IconButton
-              aria-label="Edit"
-              as={RouterLink}
-              to="/editBlog"
-              icon={<MdEdit />}
-              onClick={handleDelete}
-              colorScheme="gray"
-            />
-            {/* Delete Button */}
-            <IconButton
-              aria-label="Delete"
-              icon={<MdDelete />}
-              // onClick={handleDelete}
-              colorScheme="gray"
-            />
+        <Image
+          src={blog.image}
+          alt={blog.title}
+          w="full"
+          h="300px"
+          objectFit="cover"
+          borderTopLeftRadius="lg"
+          borderTopRightRadius="lg"
+        />
+        <Flex py="5" px="4" direction="column" justifyContent="space-between">
+          <Flex direction="row" justifyContent="space-between">
+            <Flex alignItems="center" justifyContent="space-between">
+              <Heading as="h4" fontSize="lg" mb="3" alignItems="center">
+                {blog.title}
+              </Heading>
+            </Flex>
+            <Flex alignItems="center" justifyContent="space-between" gap="2">
+              {/* View Button */}
+              <IconButton aria-label="View" icon={<IoEyeOutline />} />
+              <Text>{randomNumber}</Text>
+            </Flex>
           </Flex>
         </Flex>
-
-        <Link
-          as={RouterLink}
-          to={`/blogs/${blog._id}`}
-          fontFamily="Verdana"
-          _hover={{
-            textDecor: "none",
-            color: "Red",
-            fontWeight: "bolder",
-          }}
-        >
-          Read More
-        </Link>
-      </Flex>
-    </Box>
+      </Box>
+    </Link>
   );
 };
 
