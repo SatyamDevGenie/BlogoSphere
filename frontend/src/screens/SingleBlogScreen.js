@@ -1,7 +1,6 @@
 import {
   Box,
   Button,
-  Divider,
   Flex,
   FormControl,
   FormLabel,
@@ -65,7 +64,7 @@ const SingleBlogScreen = () => {
   };
 
   const deleteHandler = (id) => {
-    if (window.confirm("Are you sure?")) {
+    if (window.confirm("Are you sure to delete your blog?")) {
       dispatch(deleteBlog(id));
       navigate(`/`);
     }
@@ -116,7 +115,7 @@ const SingleBlogScreen = () => {
                 src={blog.image}
                 alt={blog.title}
                 borderRadius="15px"
-                h={{ base: "300px", md: "500px" }}
+                h={{ base: "300px", md: "400px" }}
                 w="full"
                 objectFit="cover"
               />
@@ -132,7 +131,6 @@ const SingleBlogScreen = () => {
                 {blog.content}
               </Text>
 
-              <Divider />
               {/* Additional Information */}
               <Flex
                 justifyContent="space-between"
@@ -140,12 +138,12 @@ const SingleBlogScreen = () => {
                 gap="5"
                 w="full"
               >
-                <Text fontSize="17px" color="#000" fontFamily="Verdana">
-                  Blog created by:
-                  <u> {blog.author && blog.author.name}</u>
+                <Text fontSize="17px" color="#000" fontFamily="Arial">
+                  Blog Created By &nbsp;: &nbsp;
+                  <b>{blog.author && blog.author.name}</b>
                 </Text>
-                <Text fontSize="17px" color="#000" fontFamily="Verdana">
-                  Author:
+                <Text fontSize="17px" color="#000" fontFamily="Arial">
+                  <b>Author &nbsp;: &nbsp;</b>
                   <Link
                     fontSize="17px"
                     href={`mailto:${blog.author && blog.author.email}`}
@@ -177,13 +175,19 @@ const SingleBlogScreen = () => {
                         bgColor: "red",
                         fontWeight: "bolder",
                         shadow: "lg",
-                        transform: "translateY(-10px)",
+                        transform: "translateX(-10px)",
                         transition: "all 0.3s ease-in-out",
                       }}
                       onClick={() => deleteHandler(blog._id)}
                     />
                   ) : (
-                    <Text>Can only be deleted by Author</Text>
+                    <Text
+                      fontFamily="Arial Black"
+                      fontWeight="bold"
+                      color="gray"
+                    >
+                      Can only be deleted by Author itself
+                    </Text>
                   )}
 
                   {blog.author && blog.author.email === userInfo?.email ? (
@@ -191,7 +195,6 @@ const SingleBlogScreen = () => {
                       aria-label="Edit"
                       icon={<FaEdit />}
                       colorScheme="gray"
-                      // size="800px"
                       w="300px"
                       h="50px"
                       _hover={{

@@ -175,7 +175,6 @@ import {
   FormLabel,
   Heading,
   Input,
-  Link,
   Spacer,
 } from "@chakra-ui/react";
 import axios from "axios";
@@ -268,9 +267,24 @@ const EditBlogScreen = () => {
 
   return (
     <>
-      <Link as={RouterLink} to={`/blogs/${blogId}`}>
+      {/* <Link as={RouterLink} to={`/blogs/${blogId}`}>
         Go Back
-      </Link>
+      </Link> */}
+
+      <Button
+        as={RouterLink}
+        to={`/blogs/${blogId}`}
+        size="sm"
+        colorScheme="teal"
+        border="1px solid #fff"
+        fontFamily="Teko"
+        fontWeight="bold"
+        p={{ base: "10px", md: "22px" }}
+        alignSelf="flex-start"
+        mt="20px"
+      >
+        Go Back
+      </Button>
 
       <Flex w="full" alignItems="center" justifyContent="center" py="5">
         <FormContainer>

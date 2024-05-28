@@ -35,8 +35,7 @@ const HomeScreen = () => {
   }, [userInfo]);
 
   const handleCreatePost = () => {
-    // Add your logic here for creating a new blog post
-    //console.log("Create post clicked");
+    console.log("Create post clicked");
   };
 
   const handleLatesPost = () => {
@@ -111,7 +110,7 @@ const HomeScreen = () => {
             xl: "1fr 1fr 1fr ",
           }}
           gap="12"
-          mt="10"
+          mt="12"
         >
           {blogs.map((blog) => (
             <BlogCard key={blog._id} blog={blog} />

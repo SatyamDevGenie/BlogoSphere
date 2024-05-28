@@ -135,7 +135,6 @@
 
 // export default RegisterScreen;
 
-
 // import {
 //   Button,
 //   Flex,
@@ -400,7 +399,7 @@ const RegisterScreen = () => {
 
         <Flex pt="10">
           <Text fontWeight="semibold">
-            Already a Customer?{" "}
+            Already have an account ?{" "}
             <Link as={RouterLink} to="/login">
               Click here to login
             </Link>

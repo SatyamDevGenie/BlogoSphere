@@ -34,7 +34,7 @@ const BlogCard = ({ blog }) => {
       }}
     >
       <Box
-        borderRadius="30"
+        borderRadius="10"
         _hover={{
           shadow: "xl",
           transform: "translateY(-15px)",
@@ -46,12 +46,11 @@ const BlogCard = ({ blog }) => {
           src={blog.image}
           alt={blog.title}
           w="full"
-          h="300px"
+          h="222px"
           objectFit="cover"
-          borderTopLeftRadius="lg"
-          borderTopRightRadius="lg"
+          borderRadius="5"
         />
-        <Flex py="5" px="4" direction="column" justifyContent="space-between">
+        <Flex py="6" px="6" direction="column" justifyContent="space-between">
           <Flex direction="row" justifyContent="space-between">
             <Flex alignItems="center" justifyContent="space-between">
               <Heading as="h4" fontSize="lg" mb="3" alignItems="center">
