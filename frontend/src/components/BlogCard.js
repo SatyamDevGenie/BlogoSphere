@@ -53,7 +53,13 @@ const BlogCard = ({ blog }) => {
         <Flex py="6" px="6" direction="column" justifyContent="space-between">
           <Flex direction="row" justifyContent="space-between">
             <Flex alignItems="center" justifyContent="space-between">
-              <Heading as="h4" fontSize="lg" mb="3" alignItems="center">
+              <Heading
+                as="h4"
+                fontSize="lg"
+                mb="3"
+                alignItems="center"
+                fontFamily="sans-serif"
+              >
                 {blog.title}
               </Heading>
             </Flex>

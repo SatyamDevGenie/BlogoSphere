@@ -1,12 +1,11 @@
-import React from "react";
-import { useEffect } from "react";
+import { Button, Flex, Grid, Heading } from "@chakra-ui/react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link as RouterLink } from "react-router-dom";
 import { listBlogs } from "../actions/blogActions";
 import BlogCard from "../components/BlogCard";
 import Loader from "../components/Loader";
 import Message from "../components/Message";
-import { Flex, Heading, Grid, Button } from "@chakra-ui/react";
-import { Link as RouterLink } from "react-router-dom";
 
 const TrendingBlogScreen = () => {
   const dispatch = useDispatch();
@@ -69,7 +68,9 @@ const TrendingBlogScreen = () => {
         >
           Go Back
         </Button>
-        <Heading>Trending Blogs</Heading>
+        <Heading fontFamily="sans-serif" fontWeight="bold" mt="4">
+          Trending Blogs
+        </Heading>
       </Flex>
 
       {loading ? (

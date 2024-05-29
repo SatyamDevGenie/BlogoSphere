@@ -51,7 +51,9 @@ const LatestBlogsScreen = () => {
         >
           Go Back
         </Button>
-        <Heading>Latest Blogs</Heading>
+        <Heading fontFamily="sans-serif" fontWeight="bold" mt="4">
+          Latest Blogs
+        </Heading>
       </Flex>
 
       {loading ? (

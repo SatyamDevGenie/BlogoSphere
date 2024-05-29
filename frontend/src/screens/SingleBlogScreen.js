@@ -105,7 +105,7 @@ const SingleBlogScreen = () => {
             {/* BLOG Details */}
             <Flex direction="column" alignItems="flex-start">
               {/* BLOG title */}
-              <Heading as="h2" fontSize="4xl" mb="4" fontFamily="Verdana">
+              <Heading as="h2" fontSize="4xl" mb="4" fontFamily="sans-serif">
                 {blog.title}
               </Heading>
 
@@ -118,13 +118,14 @@ const SingleBlogScreen = () => {
                 h={{ base: "300px", md: "400px" }}
                 w="full"
                 objectFit="cover"
+                mt="4"
               />
 
               {/* BLOG Description */}
               <Text
                 fontSize="lg"
                 mb="6"
-                fontFamily="Verdana"
+                fontFamily="sans-serif"
                 textAlign="justify"
                 mt="3"
               >
@@ -210,7 +211,13 @@ const SingleBlogScreen = () => {
                       }}
                     />
                   ) : (
-                    <Text>Can only be edited by Author</Text>
+                    <Text
+                      fontFamily="Arial Black"
+                      fontWeight="bold"
+                      color="gray"
+                    >
+                      Can only be edited by Author
+                    </Text>
                   )}
                 </Flex>
               </Flex>

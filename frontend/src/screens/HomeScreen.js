@@ -46,7 +46,7 @@ const HomeScreen = () => {
     <>
       <ToastContainer />
       <Flex justify="space-between" align="center">
-        <Heading as="h2" mb="10" fontSize="25px" mt="4" fontFamily="Arial ">
+        <Heading as="h2" mb="10" fontSize="25px" mt="4" fontFamily="sans-serif">
           All Blogs
         </Heading>
       </Flex>
@@ -115,13 +115,6 @@ const HomeScreen = () => {
           {blogs.map((blog) => (
             <BlogCard key={blog._id} blog={blog} />
           ))}
-          /
-          {/* {blogs
-            .slice()
-            .reverse()
-            .map((blog) => (
-              <BlogCard key={blog._id} blog={blog} />
-            ))} */}
         </Grid>
       )}
     </>

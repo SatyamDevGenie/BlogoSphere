@@ -6,15 +6,16 @@ const HeaderMenuItem = ({ url, label, icon }) => {
     <Link
       as={RouterLink}
       to={url}
-      fontSize="18px"
+      fontSize="16px"
       letterSpacing="wide"
       textTransform="capitalize"
       mr="5"
       display="flex"
       alignItems="center"
-      color="#000"
+      color="whitesmoke"
       fontWeight="bold"
-      fontFamily=" M PLUS Rounded 1c"
+      // fontFamily=" M PLUS Rounded 1c"
+      fontFamily="sans-serif"
       mb={{ base: "2", md: 0 }}
       _hover={{
         textDecor: "none",
