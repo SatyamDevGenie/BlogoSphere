@@ -37,6 +37,7 @@ const LoginScreen = () => {
   useEffect(() => {
     if (userInfo) {
       navigate(redirect);
+      toast.success("Login successful!"); // Display success
     }
   }, [navigate, userInfo, redirect]);
 

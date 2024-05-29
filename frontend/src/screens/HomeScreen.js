@@ -115,6 +115,13 @@ const HomeScreen = () => {
           {blogs.map((blog) => (
             <BlogCard key={blog._id} blog={blog} />
           ))}
+          /
+          {/* {blogs
+            .slice()
+            .reverse()
+            .map((blog) => (
+              <BlogCard key={blog._id} blog={blog} />
+            ))} */}
         </Grid>
       )}
     </>
