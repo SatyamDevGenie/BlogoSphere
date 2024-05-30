@@ -49,7 +49,6 @@ const Header = () => {
       left="0"
       zIndex="9999"
       shadow="lg"
-      _hover={{ bg: "Black", color: "white" }}
     >
       <Link as={RouterLink} to="/" style={{ textDecoration: "none" }}>
         <Heading
@@ -69,7 +68,13 @@ const Header = () => {
         display={{ base: "block", md: "none" }}
         onClick={() => setShow(!show)}
       >
-        <Icon as={HiOutlineMenuAlt3} color="#444" w="6" h="6" />
+        <Icon
+          as={HiOutlineMenuAlt3}
+          color="#fff"
+          fontWeight="bold"
+          w="6"
+          h="6"
+        />
       </Box>
 
       <Box
