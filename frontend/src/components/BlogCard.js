@@ -50,7 +50,13 @@ const BlogCard = ({ blog }) => {
           objectFit="cover"
           borderRadius="5"
         />
-        <Flex py="6" px="6" direction="column" justifyContent="space-between">
+        <Flex
+          py="6"
+          px="6"
+          direction="column"
+          justifyContent="space-between"
+          height="100%"
+        >
           <Flex direction="row" justifyContent="space-between">
             <Flex alignItems="center" justifyContent="space-between">
               <Heading

@@ -28,8 +28,6 @@ const HomeScreen = () => {
     toast.success("Welcome to Blogosphere!");
   }, []);
 
- 
-
   const handleCreatePost = () => {
     console.log("Create post clicked");
   };
