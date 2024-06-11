@@ -28,11 +28,7 @@ const HomeScreen = () => {
     toast.success("Welcome to Blogosphere!");
   }, []);
 
-  useEffect(() => {
-    if (userInfo) {
-      toast.success(`${userInfo.name} Logged In!! `);
-    }
-  }, [userInfo]);
+ 
 
   const handleCreatePost = () => {
     console.log("Create post clicked");
