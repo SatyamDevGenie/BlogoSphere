@@ -71,7 +71,12 @@ const SingleBlogScreen = () => {
   };
 
   return (
-    <Flex direction="column" alignItems="center" mt="6">
+    <Flex
+      direction="column"
+      alignItems="center"
+      mt={{ base: "4", md: "6" }}
+      px={{ base: "2", md: "4" }}
+    >
       {/* Go Back Button */}
       <Button
         as={RouterLink}
@@ -81,7 +86,8 @@ const SingleBlogScreen = () => {
         border="1px solid #fff"
         fontFamily="Teko"
         fontWeight="bold"
-        p={{ base: "10px", md: "22px" }}
+        p={{ base: "6px", md: "22px" }}
+        mb={{ base: "4", md: "6" }}
         alignSelf="flex-start"
       >
         Go Back
@@ -96,16 +102,22 @@ const SingleBlogScreen = () => {
       ) : (
         <>
           <Grid
-            templateColumns={{ sm: "1fr", md: "1fr" }}
+            templateColumns={{ base: "1fr", md: "1fr" }}
             gap={{ base: "4", md: "8" }}
             maxWidth="1200px"
             width="100%"
             mt="8"
+            px={{ base: "2", md: "4" }}
           >
             {/* BLOG Details */}
             <Flex direction="column" alignItems="flex-start">
               {/* BLOG title */}
-              <Heading as="h2" fontSize="4xl" mb="4" fontFamily="sans-serif">
+              <Heading
+                as="h2"
+                fontSize={{ base: "2xl", md: "4xl" }}
+                mb="4"
+                fontFamily="sans-serif"
+              >
                 {blog.title}
               </Heading>
 
@@ -115,7 +127,7 @@ const SingleBlogScreen = () => {
                 src={blog.image}
                 alt={blog.title}
                 borderRadius="15px"
-                h={{ base: "300px", md: "400px" }}
+                h={{ base: "200px", md: "400px" }}
                 w="full"
                 objectFit="cover"
                 mt="4"
@@ -123,7 +135,7 @@ const SingleBlogScreen = () => {
 
               {/* BLOG Description */}
               <Text
-                fontSize="lg"
+                fontSize={{ base: "md", md: "lg" }}
                 mb="6"
                 fontFamily="sans-serif"
                 textAlign="justify"
@@ -139,14 +151,22 @@ const SingleBlogScreen = () => {
                 gap="5"
                 w="full"
               >
-                <Text fontSize="17px" color="#000" fontFamily="Arial">
+                <Text
+                  fontSize={{ base: "sm", md: "17px" }}
+                  color="#000"
+                  fontFamily="Arial"
+                >
                   Blog Created By &nbsp;: &nbsp;
                   <b>{blog.author && blog.author.name}</b>
                 </Text>
-                <Text fontSize="17px" color="#000" fontFamily="Arial">
+                <Text
+                  fontSize={{ base: "sm", md: "17px" }}
+                  color="#000"
+                  fontFamily="Arial"
+                >
                   <b>Author &nbsp;: &nbsp;</b>
                   <Link
-                    fontSize="17px"
+                    fontSize={{ base: "sm", md: "17px" }}
                     href={`mailto:${blog.author && blog.author.email}`}
                   >
                     {blog.author && blog.author.email}
@@ -156,20 +176,19 @@ const SingleBlogScreen = () => {
                 {/* Conditionally render Delete Button */}
                 <Flex
                   justifyContent={{
-                    sm: "center",
                     base: "center",
                     md: "space-between",
                   }}
-                  direction={{ sm: "column", base: "column", md: "row" }}
-                  gap={{ sm: "2", base: 4, md: 10 }}
-                  w={{ sm: "full", base: "100%", md: "full" }}
+                  direction={{ base: "column", md: "row" }}
+                  gap={{ base: 4, md: 10 }}
+                  w="full"
                 >
                   {blog.author && blog.author.email === userInfo?.email ? (
                     <IconButton
                       aria-label="Delete"
                       icon={<MdDelete />}
                       colorScheme="gray"
-                      w="300px"
+                      w={{ base: "full", md: "300px" }}
                       h="50px"
                       _hover={{
                         textDecor: "none",
@@ -186,6 +205,7 @@ const SingleBlogScreen = () => {
                       fontFamily="Arial Black"
                       fontWeight="bold"
                       color="gray"
+                      textAlign="center"
                     >
                       Can only be deleted by Author itself
                     </Text>
@@ -196,7 +216,7 @@ const SingleBlogScreen = () => {
                       aria-label="Edit"
                       icon={<FaEdit />}
                       colorScheme="gray"
-                      w="300px"
+                      w={{ base: "full", md: "300px" }}
                       h="50px"
                       _hover={{
                         textDecor: "none",
@@ -215,6 +235,7 @@ const SingleBlogScreen = () => {
                       fontFamily="Arial Black"
                       fontWeight="bold"
                       color="gray"
+                      textAlign="center"
                     >
                       Can only be edited by Author
                     </Text>
