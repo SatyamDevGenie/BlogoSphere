@@ -6,6 +6,7 @@ import {
   Image,
   Link,
   Text,
+  VStack,
 } from "@chakra-ui/react";
 import { IoEyeOutline } from "react-icons/io5";
 import { useSelector } from "react-redux";
@@ -27,55 +28,45 @@ const BlogCard = ({ blog }) => {
     <Link
       as={RouterLink}
       to={`/blogs/${blog._id}`}
-      fontFamily="Verdana"
       _hover={{
-        textDecor: "none",
-        fontWeight: "bolder",
+        textDecoration: "none",
       }}
     >
       <Box
-        borderRadius="10"
+        borderRadius="md"
+        overflow="hidden"
+        bgColor="white"
+        boxShadow="md"
         _hover={{
-          shadow: "xl",
-          transform: "translateY(-15px)",
+          boxShadow: "xl",
+          transform: "translateY(-5px)",
           transition: "all 0.3s ease-in-out",
         }}
-        bgColor="aliceblue"
+        transition="all 0.3s ease-in-out"
       >
         <Image
           src={blog.image}
           alt={blog.title}
           w="full"
-          h="222px"
+          h="200px"
           objectFit="cover"
-          borderRadius="5"
         />
-        <Flex
-          py="6"
-          px="6"
-          direction="column"
-          justifyContent="space-between"
-          height="100%"
-        >
-          <Flex direction="row" justifyContent="space-between">
-            <Flex alignItems="center" justifyContent="space-between">
-              <Heading
-                as="h4"
-                fontSize="lg"
-                mb="3"
-                alignItems="center"
-                fontFamily="sans-serif"
-              >
-                {blog.title}
-              </Heading>
-            </Flex>
-            <Flex alignItems="center" justifyContent="space-between" gap="2">
-              {/* View Button */}
-              <IconButton aria-label="View" icon={<IoEyeOutline />} />
-              <Text>{randomNumber}</Text>
+        <VStack spacing={4} p={4} align="stretch">
+          <Heading as="h4" fontSize="lg" fontFamily="sans-serif">
+            {blog.title}
+          </Heading>
+          <Flex justifyContent="space-between" alignItems="center">
+            <Flex alignItems="center" gap={2}>
+              <IconButton
+                aria-label="View"
+                icon={<IoEyeOutline />}
+                size="sm"
+                variant="ghost"
+              />
+              <Text fontSize="sm">{randomNumber}</Text>
             </Flex>
           </Flex>
-        </Flex>
+        </VStack>
       </Box>
     </Link>
   );
