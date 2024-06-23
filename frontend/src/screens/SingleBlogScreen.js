@@ -253,7 +253,7 @@ const SingleBlogScreen = () => {
             w="full"
           >
             <Heading as="h3" size="lg" mb="6">
-              Write a review
+              Post Comments
             </Heading>
 
             {blog && blog.reviews?.length === 0 && (
