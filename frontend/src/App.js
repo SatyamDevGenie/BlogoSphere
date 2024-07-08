@@ -49,6 +49,7 @@ import { Flex } from "@chakra-ui/react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
+import ThreeScene from "./components/ThreeScene"; // Import ThreeScene component
 import BlogPostScreen from "./screens/BlogPostScreen";
 import DeleteBlogScreen from "./screens/DeleteBlogScreen";
 import EditBlogScreen from "./screens/EditBlogScreen";
@@ -59,7 +60,6 @@ import RegisterScreen from "./screens/RegisterScreen";
 import SingleBlogScreen from "./screens/SingleBlogScreen";
 import TrendingBlogsScreen from "./screens/TrendingBlogsScreen";
 import UserProfileScreen from "./screens/UserProfileScreen";
-import ThreeScene from "./ThreeScene"; // Import ThreeScene component
 
 const App = () => {
   return (
