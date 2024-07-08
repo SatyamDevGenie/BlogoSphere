@@ -38,10 +38,7 @@ const Footer = () => {
             ❤️
           </span>{" "}
           by{" "}
-          <Link
-            color="blue.500"
-            href="https://satyamsawantportfolio.netlify.app/"
-          >
+          <Link color="blue.500" href="https://ss-dev-portfolio.netlify.app">
             Satyam Sawant
           </Link>
         </Text>
