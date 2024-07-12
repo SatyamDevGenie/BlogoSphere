@@ -48,9 +48,9 @@ const HomeScreen = () => {
         direction="column"
       >
         <Heading as="h2" fontSize="2xl" fontFamily="sans-serif" mb={4}>
-          All Blogs
+          Our Featured Blogs
         </Heading>
-        <Flex justifyContent="space-between" w="full">
+        <Flex justifyContent="space-between" w="full" mt="10px">
           <Button
             as={RouterLink}
             to="/postBlog"
@@ -60,7 +60,7 @@ const HomeScreen = () => {
             onClick={handleCreatePost}
             mr={2}
             _hover={{ bg: "green.600" }}
-            w={{ base: "48%", md: "auto" }}
+            w={{ base: "40%", md: "auto" }}
           >
             Create Post
           </Button>
@@ -72,7 +72,7 @@ const HomeScreen = () => {
             fontWeight="bold"
             onClick={handleLatestPost}
             _hover={{ bg: "green.600" }}
-            w={{ base: "48%", md: "auto" }}
+            w={{ base: "40%", md: "auto" }}
           >
             Latest Blogs
           </Button>
