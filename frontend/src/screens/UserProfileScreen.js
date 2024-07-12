@@ -70,7 +70,7 @@ const UserProfileScreen = () => {
           bg="white"
           p={{ base: "4", md: "8" }}
           borderRadius="md"
-          boxShadow="md"
+          boxShadow="lg"
         >
           <Heading as="h1" mb="8" fontSize={{ base: "2xl", md: "3xl" }}>
             User Profile
