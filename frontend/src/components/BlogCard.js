@@ -1,90 +1,5 @@
-// import {
-//   Box,
-//   Flex,
-//   Heading,
-//   IconButton,
-//   Image,
-//   Link,
-//   Text,
-//   VStack,
-// } from "@chakra-ui/react";
-// import { IoEyeOutline } from "react-icons/io5";
-// import { useSelector } from "react-redux";
-// import { Link as RouterLink } from "react-router-dom";
-
-// const BlogCard = ({ blog }) => {
-//   const getRandomInt = (min, max) => {
-//     min = Math.ceil(min);
-//     max = Math.floor(max);
-//     return Math.floor(Math.random() * (max - min + 1)) + min;
-//   };
-
-//   const randomNumber = getRandomInt(1, 50);
-
-//   const userLogin = useSelector((state) => state.userLogin);
-//   const { userInfo } = userLogin;
-
-//   return (
-//     <Link
-//       as={RouterLink}
-//       to={`/blogs/${blog._id}`}
-//       _hover={{
-//         textDecoration: "none",
-//       }}
-//     >
-//       <Box
-//         borderRadius="md"
-//         overflow="hidden"
-//         bgColor="white"
-//         boxShadow="md"
-//         _hover={{
-//           boxShadow: "xl",
-//           transform: "translateY(-5px)",
-//           transition: "all 0.3s ease-in-out",
-//         }}
-//         transition="all 0.3s ease-in-out"
-//       >
-//         <Image
-//           src={blog.image}
-//           alt={blog.title}
-//           w="full"
-//           h="200px"
-//           objectFit="cover"
-//         />
-//         <VStack spacing={4} p={4} align="stretch">
-//           <Heading as="h4" fontSize="lg" fontFamily="sans-serif">
-//             {blog.title}
-//           </Heading>
-//           <Flex justifyContent="space-between" alignItems="center">
-//             <Flex alignItems="center" gap={2}>
-//               <IconButton
-//                 aria-label="View"
-//                 icon={<IoEyeOutline />}
-//                 size="sm"
-//                 variant="ghost"
-//               />
-//               <Text fontSize="sm">{randomNumber}</Text>
-//             </Flex>
-//           </Flex>
-//         </VStack>
-//       </Box>
-//     </Link>
-//   );
-// };
-
-// export default BlogCard;
-
-import {
-  Box,
-  Flex,
-  Heading,
-  IconButton,
-  Image,
-  Link,
-  Text,
-  VStack,
-} from "@chakra-ui/react";
-import { IoEyeOutline, IoHeartOutline } from "react-icons/io5";
+import React from "react";
+import { IoEyeOutline } from "react-icons/io5";
 import { useSelector } from "react-redux";
 import { Link as RouterLink } from "react-router-dom";
 
@@ -101,59 +16,30 @@ const BlogCard = ({ blog }) => {
   const { userInfo } = userLogin;
 
   return (
-    <Link
-      as={RouterLink}
+    <RouterLink
       to={`/blogs/${blog._id}`}
-      _hover={{
-        textDecoration: "none",
-      }}
+      className="group block w-full mx-auto bg-white rounded-md shadow-md overflow-hidden transition-transform transform group-hover:-translate-y-1 group-hover:shadow-xl duration-300"
     >
-      <Box
-        borderRadius="md"
-        overflow="hidden"
-        bgColor="white"
-        boxShadow="md"
-        _hover={{
-          boxShadow: "xl",
-          transform: "translateY(-5px)",
-          transition: "all 0.3s ease-in-out",
-        }}
-        transition="all 0.3s ease-in-out"
-      >
-        <Image
-          src={blog.image}
-          alt={blog.title}
-          w="full"
-          h="200px"
-          objectFit="cover"
-        />
-        <VStack spacing={4} p={4} align="stretch">
-          <Heading as="h4" fontSize="lg" fontFamily="sans-serif">
-            {blog.title}
-          </Heading>
-          <Flex justifyContent="space-between" alignItems="center">
-            <Flex alignItems="center" gap={2}>
-              <IconButton
-                aria-label="View"
-                icon={<IoEyeOutline />}
-                size="sm"
-                variant="ghost"
-              />
-              <Text fontSize="sm">{randomNumber}</Text>
-            </Flex>
-            <Flex alignItems="center" gap={2}>
-              <IconButton
-                aria-label="Like"
-                icon={<IoHeartOutline />}
-                size="sm"
-                variant="ghost"
-              />
-              <Text fontSize="sm">Like</Text>
-            </Flex>
-          </Flex>
-        </VStack>
-      </Box>
-    </Link>
+      <img
+        src={blog.image}
+        alt={blog.title}
+        className="w-full h-48 object-cover"
+      />
+      <div className="p-4">
+        <h4 className="text-lg font-semibold">{blog.title}</h4>
+        <div className="flex justify-between items-center mt-2">
+          <div className="flex items-center gap-2">
+            <button
+              aria-label="View"
+              className="p-2 text-gray-500 group-hover:text-gray-700 transition-colors duration-300"
+            >
+              <IoEyeOutline />
+            </button>
+            <span className="text-sm">{randomNumber}</span>
+          </div>
+        </div>
+      </div>
+    </RouterLink>
   );
 };
 
