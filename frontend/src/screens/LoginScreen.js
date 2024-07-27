@@ -1,14 +1,3 @@
-import {
-  Button,
-  Flex,
-  FormControl,
-  FormLabel,
-  Heading,
-  Input,
-  Link,
-  Spacer,
-  Text,
-} from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -19,7 +8,6 @@ import {
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css"; // Import CSS for styling
 import { login } from "../actions/userActions";
-import FormContainer from "../components/FormContainer";
 
 const LoginScreen = () => {
   const dispatch = useDispatch();
@@ -53,53 +41,70 @@ const LoginScreen = () => {
   }, [error]);
 
   return (
-    <Flex w="full" alignItems="center" justifyContent="center" py="5" mt="5">
-      <FormContainer>
-        <Heading as="h1" mb="8" fontSize="3xl">
-          Login
-        </Heading>
+    <div className="flex w-full items-center justify-center py-10 bg-gray-50 min-h-screen">
+      <div className="w-full max-w-md p-8 space-y-6 bg-white shadow-lg rounded-lg">
+        <h1 className="text-3xl font-bold text-center mb-8">Login</h1>
 
-        <form onSubmit={submitHandler}>
-          <FormControl id="email">
-            <FormLabel htmlFor="email">Email address</FormLabel>
-            <Input
+        <form onSubmit={submitHandler} className="space-y-4">
+          <div>
+            <label
+              htmlFor="email"
+              className="block text-sm font-medium text-gray-700"
+            >
+              Email address
+            </label>
+            <input
               id="email"
               type="email"
-              placeholder="Enter your email Address"
+              placeholder="Enter your email address"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-teal-500 focus:border-teal-500 sm:text-sm"
             />
-          </FormControl>
+          </div>
 
-          <Spacer h="3" />
-
-          <FormControl id="password">
-            <FormLabel htmlFor="password">Password</FormLabel>
-            <Input
+          <div>
+            <label
+              htmlFor="password"
+              className="block text-sm font-medium text-gray-700"
+            >
+              Password
+            </label>
+            <input
               id="password"
               type="password"
               placeholder="************"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-teal-500 focus:border-teal-500 sm:text-sm"
             />
-          </FormControl>
+          </div>
 
-          <Button type="submit" colorScheme="teal" mt="4" isLoading={loading}>
-            Login
-          </Button>
+          <div>
+            <button
+              type="submit"
+              className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-teal-600 hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"
+              disabled={loading}
+            >
+              {loading ? "Loading..." : "Login"}
+            </button>
+          </div>
         </form>
 
-        <Flex pt="10">
-          <Text fontWeight="semibold">
+        <div className="text-center pt-6">
+          <p className="text-sm font-semibold">
             New Customer?{" "}
-            <Link as={RouterLink} to="/register">
+            <RouterLink
+              to="/register"
+              className="text-teal-600 hover:text-teal-500"
+            >
               Click here to register
-            </Link>
-          </Text>
-        </Flex>
-      </FormContainer>
+            </RouterLink>
+          </p>
+        </div>
+      </div>
       <ToastContainer /> {/* Render the ToastContainer component */}
-    </Flex>
+    </div>
   );
 };
 
