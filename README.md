@@ -16,15 +16,15 @@ Create a simple blog application that allows users to create, read, update, and 
 Before you begin, ensure you have met the following requirements:
 
 - Node.js and npm installed on your system
-- MongoDB server running
+- MongoDB Atlas
 
 ## Getting Started
 
 1. Clone the repository:
-2. Install dependencies using npm install.
+2. Install dependencies using npm install in both frontend and backend.
 3. Set up your MongoDB database and provide the connection URI in the .env file.
 4. Set environment variables for other configurations if needed.
-5. Start the server using npm start.
+5. Start the server using npm run dev in root folder.
 
 ## It starts on http://localhost:3000
 
