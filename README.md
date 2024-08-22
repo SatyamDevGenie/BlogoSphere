@@ -1,15 +1,15 @@
-[# E-Commerce API Documentation
+[# Blog Applicaion Documentation
 
-Welcome to the E-Commerce API! This API provides endpoints to manage categories, products, user authentication, and shopping cart functionalities for an e-commerce platform.
+Create a simple blog application that allows users to create, read, update, and delete (CRUD) blog posts. The application should have a RESTful API built using Node.js and Express.js, and a frontend built using React.
 
 ## Features
 
 - User registration and login with JWT authentication
-- Get list of categories and products
-- Add products to the shopping cart
-- Place an order
-- View order history
-- View order details
+- Get list of latest blogs and trending blogs
+- Add blogs
+- Update blogs
+- Delete blogs
+- All blogs
 
 ## Prerequisites
 
