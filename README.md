@@ -38,3 +38,11 @@ Before you begin, ensure you have met the following requirements:
 - http://localhost:5000/api/blogs/:id       -   Update Blog
 - http://localhost:5000/api/blogs/:id       -   Delete Blog
 
+## .env File
+
+NODE_ENV=development
+PORT=5000
+MONGO_URI=mongodb+srv://satyam:123@cluster0.mhmfhbx.mongodb.net/Blogosphere?retryWrites=true&w=majority
+JWT_SECRET=satyam
+
+
