@@ -28,12 +28,13 @@ Before you begin, ensure you have met the following requirements:
 
 ## It starts on http://localhost:3000
 
-## API Endpoints
+## Application API Endpoints
 
-- User registration and login with JWT authentication
-- Get list of latest blogs and trending blogs
-- Add blogs
-- Update blogs
-- Delete blogs
-- All blogs
+- http://localhost:5000/api/users           -   Register
+- http://localhost:5000/api/users/login     -   Login
+- http://localhost:5000/api/users/profile   -   User Profile
+- http://localhost:5000/api/blogs           -   All Blogs
+- http://localhost:5000/api/blogs/:id       -   Get Single Blog
+- http://localhost:5000/api/blogs/:id       -   Update Blog
+- http://localhost:5000/api/blogs/:id       -   Delete Blog
 
