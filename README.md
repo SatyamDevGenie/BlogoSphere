@@ -1,4 +1,4 @@
-[# Blog Applicaion Documentation
+## Blog Applicaion Documentation
 
 Create a simple blog application that allows users to create, read, update, and delete (CRUD) blog posts. The application should have a RESTful API built using Node.js and Express.js, and a frontend built using React.
 
