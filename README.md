@@ -30,3 +30,10 @@ Before you begin, ensure you have met the following requirements:
 
 ## API Endpoints
 
+- User registration and login with JWT authentication
+- Get list of latest blogs and trending blogs
+- Add blogs
+- Update blogs
+- Delete blogs
+- All blogs
+
