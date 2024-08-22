@@ -51,6 +51,7 @@ JWT_SECRET=satyam
 2. For state management i had used core redux.
 3. Chakra UI library for the user interface.
 4. The entire application is responsive in mobile devices.
+5. JWT for user authentication.
 
 
 
