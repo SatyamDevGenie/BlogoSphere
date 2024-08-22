@@ -28,7 +28,7 @@ Before you begin, ensure you have met the following requirements:
 
 ## It starts on http://localhost:3000
 
-## Application API Endpoints
+## API Endpoints
 
 - http://localhost:5000/api/users           -   Register
 - http://localhost:5000/api/users/login     -   Login
