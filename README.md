@@ -30,7 +30,6 @@ Before you begin, ensure you have met the following requirements:
 
 ## API Endpoints
 
-<<<<<<< HEAD
 - http://localhost:5000/api/users - Register
 - http://localhost:5000/api/users/login - Login
 - http://localhost:5000/api/users/profile - User Profile
@@ -38,15 +37,7 @@ Before you begin, ensure you have met the following requirements:
 - http://localhost:5000/api/blogs/:id - Get Single Blog
 - http://localhost:5000/api/blogs/:id - Update Blog
 - http://localhost:5000/api/blogs/:id - Delete Blog
-=======
-- http://localhost:5000/api/users           -   Register
-- http://localhost:5000/api/users/login     -   Login
-- http://localhost:5000/api/users/profile   -   User Profile
-- http://localhost:5000/api/blogs           -   All Blogs
-- http://localhost:5000/api/blogs/:id       -   Get Single Blog
-- http://localhost:5000/api/blogs/:id       -   Update Blog
-- http://localhost:5000/api/blogs/:id       -   Delete Blog
->>>>>>> 3fb499df85f87023eb4481235595ec19d8e98783
+
 
 ## .env File
 
@@ -62,9 +53,4 @@ JWT_SECRET=satyam
 3. Chakra UI library for the user interface.
 4. The entire application is responsive in mobile devices.
 5. JWT for user authentication.
-<<<<<<< HEAD
-=======
 
-
-
->>>>>>> 3fb499df85f87023eb4481235595ec19d8e98783
