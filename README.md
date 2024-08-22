@@ -45,5 +45,12 @@ PORT=5000
 MONGO_URI=mongodb+srv://satyam:123@cluster0.mhmfhbx.mongodb.net/Blogosphere?retryWrites=true&w=majority
 JWT_SECRET=satyam
 
+## Frontend
+
+1. It runs on localhost:3000 port.
+2. For state management i had used core redux.
+3. Chakra UI library for the user interface.
+4. The entire application is responsive in mobile devices.
+
 
 
