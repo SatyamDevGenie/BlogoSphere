@@ -40,9 +40,10 @@ Before you begin, ensure you have met the following requirements:
 
 ## .env File
 
-NODE_ENV=development
-PORT=5000
-MONGO_URI=mongodb+srv://satyam:123@cluster0.mhmfhbx.mongodb.net/Blogosphere?retryWrites=true&w=majority
-JWT_SECRET=satyam
+HOST=localhost
+PORT=3306
+USER=root
+PASSWORD=your_mysql_password
+DATABASE=employee_db
 
 
