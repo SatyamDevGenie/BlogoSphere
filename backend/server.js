@@ -1,6 +1,7 @@
 import dotenv from "dotenv";
 import express from "express";
 import path from "path";
+import chalk from "chalk";
 
 import connectDB from "./config/db.js";
 import { errorHandler, notFound } from "./middlewares/errorMiddleware.js";
@@ -35,6 +36,9 @@ app.use(errorHandler);
 //Whole ENV Setup
 const PORT = process.env.PORT || 5000;
 
+
+
 app.listen(PORT, () => {
-  console.log(`Server running in ${process.env.NODE_ENV} mode on PORT ${PORT}`);
+    console.log(chalk.yellow(`Server running in ${process.env.NODE_ENV} mode on PORT ${PORT}`));
 });
+

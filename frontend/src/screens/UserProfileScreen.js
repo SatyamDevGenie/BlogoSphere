@@ -1,19 +1,9 @@
-import {
-  Box,
-  Button,
-  Flex,
-  FormControl,
-  FormLabel,
-  Grid,
-  Heading,
-  Input,
-  Spacer,
-} from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { getUserDetails, updateUserProfile } from "../actions/userActions";
 import Message from "../components/Message";
+
 const UserProfileScreen = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -58,87 +48,82 @@ const UserProfileScreen = () => {
   };
 
   return (
-    <Grid
-      templateColumns={{ base: "1fr", md: "1fr" }}
-      py={{ base: "5", md: "10" }}
-      gap={{ base: "5", md: "10" }}
-      px={{ base: "4", md: "0" }}
-    >
-      <Flex w="full" alignItems="center" justifyContent="center" py="5">
-        <Box
-          w={{ base: "100%", md: "60%" }}
-          bg="white"
-          p={{ base: "4", md: "8" }}
-          borderRadius="md"
-          boxShadow="lg"
-        >
-          <Heading as="h1" mb="8" fontSize={{ base: "2xl", md: "3xl" }}>
-            User Profile
-          </Heading>
+    <div className="py-5 px-4 md:px-0">
+      <div className="flex justify-center items-center py-5">
+        <div className="w-full md:w-3/5 bg-white p-8 rounded-md shadow-lg">
+          <h1 className="text-2xl md:text-3xl font-bold mb-8">User Profile</h1>
 
           {error && <Message type="error">{error}</Message>}
           {message && <Message type="error">{message}</Message>}
 
           <form onSubmit={submitHandler}>
-            <FormControl id="name">
-              <FormLabel>Your Name</FormLabel>
-              <Input
+            <div className="mb-4">
+              <label htmlFor="name" className="block text-sm font-semibold mb-2">
+                Your Name
+              </label>
+              <input
                 type="text"
+                id="name"
                 placeholder="Your full name"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
+                className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500"
               />
-            </FormControl>
+            </div>
 
-            <Spacer h="3" />
-
-            <FormControl id="email">
-              <FormLabel>Email address</FormLabel>
-              <Input
+            <div className="mb-4">
+              <label htmlFor="email" className="block text-sm font-semibold mb-2">
+                Email Address
+              </label>
+              <input
                 type="email"
+                id="email"
                 placeholder="username@domain.com"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
+                className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500"
               />
-            </FormControl>
+            </div>
 
-            <Spacer h="3" />
-
-            <FormControl id="password">
-              <FormLabel>Password</FormLabel>
-              <Input
+            <div className="mb-4">
+              <label htmlFor="password" className="block text-sm font-semibold mb-2">
+                Password
+              </label>
+              <input
                 type="password"
+                id="password"
                 placeholder="************"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
+                className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500"
               />
-            </FormControl>
+            </div>
 
-            <Spacer h="3" />
-
-            <FormControl id="confirmPassword">
-              <FormLabel>Confirm Password</FormLabel>
-              <Input
+            <div className="mb-4">
+              <label htmlFor="confirmPassword" className="block text-sm font-semibold mb-2">
+                Confirm Password
+              </label>
+              <input
                 type="password"
+                id="confirmPassword"
                 placeholder="************"
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
+                className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500"
               />
-            </FormControl>
+            </div>
 
-            <Button
+            <button
               type="submit"
-              colorScheme="teal"
-              mt="4"
-              isLoading={loading}
-              w="50"
+              className="w-1/2 mt-4 p-3 bg-teal-600 text-white font-semibold rounded-md hover:bg-teal-700 focus:outline-none"
+              disabled={loading}
             >
-              Update
-            </Button>
+              {loading ? "Updating..." : "Update"}
+            </button>
           </form>
-        </Box>
-      </Flex>
-    </Grid>
+        </div>
+      </div>
+    </div>
   );
 };
 

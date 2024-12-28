@@ -1,6 +1,6 @@
-import { Box, Button, Flex, Grid, Heading } from "@chakra-ui/react";
+import { Box, Button, Flex, Grid, Heading, Text } from "@chakra-ui/react";
 import { useEffect } from "react";
-import { toast } from "react-hot-toast"; // Correct import
+import { toast } from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
 import { Link as RouterLink } from "react-router-dom";
 import { listBlogs } from "../actions/blogActions";
@@ -39,18 +39,34 @@ const HomeScreen = () => {
   };
 
   return (
-    <>
+    <Box maxW="8xl" mx="auto" px={4}>
       <Flex
-        justify="space-between"
+        justify="center"
         align="center"
-        mb="10"
-        mt="6"
         direction="column"
+        mb={10}
+        mt={6}
+        textAlign="center"
       >
-        <Heading as="h2" fontSize="2xl" fontFamily="sans-serif" mb={4}>
-          Our Featured Blogs
+        <Heading
+          as="h2"
+          fontSize={{ base: "2xl", md: "3xl" }}
+          fontFamily="heading"
+          mb={4}
+          color="gray.800"
+        >
+          Discover the Latest Trends in Blogging
         </Heading>
-        <Flex justifyContent="space-between" w="full" mt="10px">
+        <Text
+          fontSize={{ base: "md", md: "lg" }}
+          color="gray.500"
+          mb={8}
+          maxW="3xl"
+        >
+          Explore our featured blogs, get inspired, and share your thoughts with
+          the world.
+        </Text>
+        <Flex justify="center" w="full" direction={{ base: "column", md: "row" }}>
           <Button
             as={RouterLink}
             to="/postBlog"
@@ -58,9 +74,10 @@ const HomeScreen = () => {
             size="lg"
             fontWeight="bold"
             onClick={handleCreatePost}
-            mr={2}
+            mb={{ base: 4, md: 0 }}
+            mr={{ md: 4 }}
             _hover={{ bg: "green.600" }}
-            w={{ base: "40%", md: "auto" }}
+            w={{ base: "100%", md: "auto" }}
           >
             Create Post
           </Button>
@@ -72,7 +89,7 @@ const HomeScreen = () => {
             fontWeight="bold"
             onClick={handleLatestPost}
             _hover={{ bg: "green.600" }}
-            w={{ base: "40%", md: "auto" }}
+            w={{ base: "100%", md: "auto" }}
           >
             Latest Blogs
           </Button>
@@ -99,7 +116,7 @@ const HomeScreen = () => {
           </Grid>
         </Box>
       )}
-    </>
+    </Box>
   );
 };
 
