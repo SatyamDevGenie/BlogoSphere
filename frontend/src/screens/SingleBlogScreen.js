@@ -2,13 +2,9 @@ import { useEffect, useState } from "react";
 import { FaEdit } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
-import { Button } from "@chakra-ui/react";
+import { Button, Textarea, Select, Input, Box, Image, Text, Flex, VStack, HStack, useToast, Divider } from "@chakra-ui/react";
 import { Link as RouterLink, useNavigate, useParams } from "react-router-dom";
-import {
-  createBlogReview,
-  deleteBlog,
-  listBlogDetails,
-} from "../actions/blogActions";
+import { createBlogReview, deleteBlog, listBlogDetails } from "../actions/blogActions";
 import Loader from "../components/Loader";
 import Message from "../components/Message";
 import Rating from "../components/Rating";
@@ -21,7 +17,7 @@ const SingleBlogScreen = () => {
 
   const [rating, setRating] = useState(1);
   const [comment, setComment] = useState("");
-  const [name, setName] = useState("");
+  const toast = useToast();
 
   const blogDetails = useSelector((state) => state.blogDetails);
   const { loading, error, blog } = blogDetails;
@@ -30,23 +26,26 @@ const SingleBlogScreen = () => {
   const { userInfo } = userLogin;
 
   const blogReviewCreate = useSelector((state) => state.blogReviewCreate);
-  const { success: successBlogReview, error: errorBlogReview } =
-    blogReviewCreate;
+  const { success: successBlogReview, error: errorBlogReview } = blogReviewCreate;
 
   useEffect(() => {
     if (successBlogReview) {
-      alert("Review Submitted");
+      toast({
+        title: "Review Submitted",
+        status: "success",
+        duration: 3000,
+        isClosable: true,
+      });
       setRating(1);
       setComment("");
-      setName("");
       dispatch({ type: BLOG_REVIEW_CREATE_RESET });
     }
     dispatch(listBlogDetails(id));
-  }, [id, dispatch, successBlogReview]);
+  }, [id, dispatch, successBlogReview, toast]);
 
   const submitHandler = (e) => {
     e.preventDefault();
-    dispatch(createBlogReview(id, { rating, comment, name }));
+    dispatch(createBlogReview(id, { rating, comment}));
   };
 
   const deleteHandler = (id) => {
@@ -57,24 +56,16 @@ const SingleBlogScreen = () => {
   };
 
   return (
-    <div className="flex flex-col items-center mt-4 px-4">
-      {/* Go Back Button */}
-      <div className="w-full mb-6">
-        <Button
-          as={RouterLink}
-          to="/"
-          size="sm"
-          colorScheme="teal"
-          fontWeight="bold"
-          _hover={{
-            bgColor: "green.400",
-            transform: "scale(1.05)",
-            transition: "0.3s",
-          }}
-        >
-          Go Back
-        </Button>
-      </div>
+    <Box maxW="6xl" mx="auto" py={6} px={4}>
+      <Button
+        as={RouterLink}
+        to="/"
+        colorScheme="teal"
+        mb={4}
+        size="sm"
+      >
+        Go Back
+      </Button>
 
       {loading ? (
         <Loader />
@@ -82,119 +73,119 @@ const SingleBlogScreen = () => {
         <Message type="error">{error}</Message>
       ) : (
         <>
-          <div className="w-full max-w-4xl">
-            <h2 className="text-3xl font-bold mb-4">{blog.title}</h2>
-            <img
+          <Box shadow="md" borderWidth="1px" borderRadius="lg" p={6} mb={6}>
+            <Text fontSize="2xl" fontWeight="bold" mb={4}>{blog.title}</Text>
+            <Image
               src={blog.image}
               alt={blog.title}
-              className="rounded-lg w-full h-64 object-cover mb-4"
+              borderRadius="lg"
+              objectFit="cover"
+              w="full"
+              h="300px"
+              mb={4}
             />
-            <p className="text-lg text-gray-800 leading-relaxed mb-6">
+            <Text fontSize="md" color="gray.700" mb={4}>
               {blog.content}
-            </p>
-
-            <div className="text-sm text-gray-600">
-              <p>
-                <strong>Created by:</strong> {blog.author?.name}
-              </p>
-              <p>
-                <strong>Contact:</strong>{" "}
-                <a
-                  href={`mailto:${blog.author?.email}`}
-                  className="text-blue-500"
-                >
-                  {blog.author?.email}
-                </a>
-              </p>
-            </div>
-
-            <div className="mt-6 flex space-x-4">
+            </Text>
+            <Divider my={4} />
+            <Text fontSize="sm" color="gray.600" mb={2}>
+              <strong>Author:</strong> {blog.author?.name}
+            </Text>
+            <Text fontSize="sm" color="gray.600">
+              <strong>Contact:</strong>{" "}
+              <a href={`mailto:${blog.author?.email}`} style={{ color: "#3182ce" }}>
+                {blog.author?.email}
+              </a>
+            </Text>
+            <HStack spacing={4} mt={4}>
               {blog.author?.email === userInfo?.email && (
                 <>
-                  <button
+                  <Button
+                    leftIcon={<FaEdit />}
+                    colorScheme="yellow"
                     onClick={() => navigate(`/editBlog/${id}`)}
-                    className="flex items-center bg-yellow-500 text-white py-2 px-4 rounded hover:bg-yellow-600 transition"
                   >
-                    <FaEdit className="mr-2" /> Edit
-                  </button>
-                  <button
+                    Edit
+                  </Button>
+                  <Button
+                    leftIcon={<MdDelete />}
+                    colorScheme="red"
                     onClick={() => deleteHandler(blog._id)}
-                    className="flex items-center bg-red-500 text-white py-2 px-4 rounded hover:bg-red-600 transition"
                   >
-                    <MdDelete className="mr-2" /> Delete
-                  </button>
+                    Delete
+                  </Button>
                 </>
               )}
-            </div>
-          </div>
+            </HStack>
+          </Box>
 
-          <div className="w-full max-w-4xl mt-10">
-            <h3 className="text-2xl font-semibold mb-4">Post Comments</h3>
+          <Box shadow="md" borderWidth="1px" borderRadius="lg" p={6}>
+            <Text fontSize="xl" fontWeight="semibold" mb={4}>
+              Post Comments
+            </Text>
             {blog.reviews?.length === 0 ? (
               <Message>No Reviews</Message>
             ) : (
-              blog.reviews.map((review) => (
-                <div key={review._id} className="bg-gray-100 p-4 mb-4 rounded">
-                  <div className="flex justify-between">
-                    <p className="font-bold">{review.name}</p>
-                    <Rating value={review.rating} />
-                  </div>
-                  <p>{review.comment}</p>
-                </div>
-              ))
+              <VStack spacing={4} align="stretch">
+                {blog.reviews.map((review) => (
+                  <Box key={review._id} bg="gray.100" p={4} borderRadius="md">
+                    <Flex justifyContent="space-between" mb={2}>
+                      <Text fontWeight="bold">{review.name}</Text>
+                      <Rating value={review.rating} />
+                    </Flex>
+                    <Text>{review.comment}</Text>
+                  </Box>
+                ))}
+              </VStack>
             )}
 
             {userInfo ? (
-              <form onSubmit={submitHandler} className="mt-6">
-                <div className="mb-4">
-                  <label className="block text-sm mb-2">Rating</label>
-                  <select
+              <form onSubmit={submitHandler}>
+                <Box mt={6}>
+                  <Text fontSize="sm" mb={2}>Rating</Text>
+                  <Select
                     value={rating}
                     onChange={(e) => setRating(e.target.value)}
-                    className="border rounded px-3 py-2 w-full"
+                    placeholder="Select..."
+                    mb={4}
                   >
-                    <option value="">Select...</option>
                     <option value="1">1 - Poor</option>
                     <option value="2">2 - Fair</option>
                     <option value="3">3 - Good</option>
                     <option value="4">4 - Very Good</option>
                     <option value="5">5 - Excellent</option>
-                  </select>
-                </div>
+                  </Select>
 
-                <div className="mb-4">
-                  <label className="block text-sm mb-2">Comment</label>
-                  <textarea
+                  <Text fontSize="sm" mb={2}>Comment</Text>
+                  <Textarea
                     value={comment}
                     onChange={(e) => setComment(e.target.value)}
-                    className="border rounded px-3 py-2 w-full"
-                  ></textarea>
-                </div>
+                    mb={4}
+                  />
 
-                <div className="mb-4">
-                  <label className="block text-sm mb-2">Your Name</label>
-                  <input
-                    type="text"
+                  {/* <Text fontSize="sm" mb={2}>Your Name</Text>
+                  <Input
                     value={name}
                     onChange={(e) => setName(e.target.value)}
-                    className="border rounded px-3 py-2 w-full"
-                  />
-                </div>
+                    mb={4}
+                  /> */}
 
-                <button
-                  type="submit"
-                  className="bg-teal-500 text-white py-2 px-4 rounded hover:bg-teal-600"
-                >
-                  Submit Review
-                </button>
+                  <Button
+                    type="submit"
+                    colorScheme="teal"
+                    w="500px"
+                  >
+                    Submit Review
+                  </Button>
+                </Box>
               </form>
             ) : (
               <Message>Please log in to write a review</Message>
             )}
-          </div>
+          </Box>
         </>
       )}
-    </div>
+    </Box>
   );
 };
 

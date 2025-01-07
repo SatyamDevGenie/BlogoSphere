@@ -1,4 +1,4 @@
-import { Box, Button, Flex, Grid, Heading, Text } from "@chakra-ui/react";
+import { Box, Button, Flex, Grid, Heading, Text, Image } from "@chakra-ui/react";
 import { useEffect } from "react";
 import { toast } from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
@@ -39,83 +39,80 @@ const HomeScreen = () => {
   };
 
   return (
-    <Box maxW="8xl" mx="auto" px={4}>
-      <Flex
-        justify="center"
-        align="center"
-        direction="column"
-        mb={10}
-        mt={6}
+    <Box maxW="8xl" mx="auto" px={4} py={6}>
+      {/* Hero Section */}
+      <Box
+        bgGradient="linear(to-r, teal.500, green.500)"
+        py={16}
+        px={8}
         textAlign="center"
+        borderRadius="lg"
+        color="white"
       >
-        <Heading
-          as="h2"
-          fontSize={{ base: "2xl", md: "3xl" }}
-          fontFamily="heading"
-          mb={4}
-          color="gray.800"
-        >
-          Discover the Latest Trends in Blogging
+        <Heading as="h1" fontSize={{ base: "3xl", md: "4xl" }} mb={4}>
+          Welcome to Blogosphere
         </Heading>
-        <Text
-          fontSize={{ base: "md", md: "lg" }}
-          color="gray.500"
-          mb={8}
-          maxW="3xl"
-        >
-          Explore our featured blogs, get inspired, and share your thoughts with
-          the world.
+        <Text fontSize={{ base: "md", md: "lg" }} maxW="3xl" mx="auto" mb={8}>
+          Discover, share, and stay inspired with our collection of featured
+          blogs written by passionate authors worldwide.
         </Text>
-        <Flex justify="center" w="full" direction={{ base: "column", md: "row" }}>
+        <Flex justify="center" gap={4} flexWrap="wrap">
           <Button
             as={RouterLink}
             to="/postBlog"
-            colorScheme="teal"
             size="lg"
-            fontWeight="bold"
+            colorScheme="whiteAlpha"
             onClick={handleCreatePost}
-            mb={{ base: 4, md: 0 }}
-            mr={{ md: 4 }}
-            _hover={{ bg: "green.600" }}
-            w={{ base: "100%", md: "auto" }}
+            leftIcon={<i className="fas fa-pen"></i>}
+            _hover={{ bg: "white", color: "teal.500" }}
           >
             Create Post
           </Button>
           <Button
             as={RouterLink}
             to="/latestBlogs"
-            colorScheme="teal"
             size="lg"
-            fontWeight="bold"
+            colorScheme="whiteAlpha"
             onClick={handleLatestPost}
-            _hover={{ bg: "green.600" }}
-            w={{ base: "100%", md: "auto" }}
+            leftIcon={<i className="fas fa-blog"></i>}
+            _hover={{ bg: "white", color: "teal.500" }}
           >
             Latest Blogs
           </Button>
         </Flex>
-      </Flex>
+      </Box>
 
-      {loading ? (
-        <Loader />
-      ) : error ? (
-        <Message type="error">{error}</Message>
-      ) : (
-        <Box mt={12}>
+      {/* Blog Cards Section */}
+      <Box mt={12}>
+        {loading ? (
+          <Loader />
+        ) : error ? (
+          <Message type="error">{error}</Message>
+        ) : (
           <Grid
             templateColumns={{
               base: "1fr",
               md: "repeat(2, 1fr)",
               lg: "repeat(3, 1fr)",
             }}
-            gap={6}
+            gap={8}
           >
             {blogs.map((blog) => (
-              <BlogCard key={blog._id} blog={blog} />
+              <Box
+                key={blog._id}
+                borderWidth="1px"
+                borderRadius="lg"
+                overflow="hidden"
+                transition="transform 0.2s"
+                _hover={{ transform: "scale(1.05)", shadow: "lg" }}
+              >
+                <BlogCard blog={blog} />
+              </Box>
             ))}
           </Grid>
-        </Box>
-      )}
+        )}
+      </Box>
+
     </Box>
   );
 };
