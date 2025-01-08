@@ -25,20 +25,20 @@ const BlogCard = ({ blog }) => {
         <img
           src={blog.image}
           alt={blog.title}
-          className="w-full h-60 object-cover rounded-t-lg group-hover:scale-105 transition-transform duration-500"
+          className="w-full h-50 object-contain rounded-t-lg group-hover:scale-105 transition-transform duration-500"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
       </div>
 
       {/* Content Section */}
-      <div className="p-5">
-        <h4 className="text-xl font-semibold text-gray-800 group-hover:text-purple-600 transition-colors duration-300">
+      <div className="p-4">
+        <h4 className="text-xl font-extrabold text-gray-800 group-hover:text-purple-600 transition-colors duration-300">
           {blog.title}
         </h4>
         <p className="text-gray-500 text-sm mt-2 line-clamp-2">
           {blog.description}
         </p>
-        <div className="flex justify-between items-center mt-4">
+        <div className="flex justify-between items-center mt-2">
           <div className="flex items-center gap-2">
             <button
               aria-label="View"

@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { FaEdit } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
-import { Button, Textarea, Select, Input, Box, Image, Text, Flex, VStack, HStack, useToast, Divider } from "@chakra-ui/react";
 import { Link as RouterLink, useNavigate, useParams } from "react-router-dom";
 import { createBlogReview, deleteBlog, listBlogDetails } from "../actions/blogActions";
 import Loader from "../components/Loader";
@@ -17,7 +16,6 @@ const SingleBlogScreen = () => {
 
   const [rating, setRating] = useState(1);
   const [comment, setComment] = useState("");
-  const toast = useToast();
 
   const blogDetails = useSelector((state) => state.blogDetails);
   const { loading, error, blog } = blogDetails;
@@ -30,22 +28,17 @@ const SingleBlogScreen = () => {
 
   useEffect(() => {
     if (successBlogReview) {
-      toast({
-        title: "Review Submitted",
-        status: "success",
-        duration: 3000,
-        isClosable: true,
-      });
+      alert("Review Submitted");
       setRating(1);
       setComment("");
       dispatch({ type: BLOG_REVIEW_CREATE_RESET });
     }
     dispatch(listBlogDetails(id));
-  }, [id, dispatch, successBlogReview, toast]);
+  }, [id, dispatch, successBlogReview]);
 
   const submitHandler = (e) => {
     e.preventDefault();
-    dispatch(createBlogReview(id, { rating, comment}));
+    dispatch(createBlogReview(id, { rating, comment }));
   };
 
   const deleteHandler = (id) => {
@@ -56,16 +49,13 @@ const SingleBlogScreen = () => {
   };
 
   return (
-    <Box maxW="6xl" mx="auto" py={6} px={4}>
-      <Button
-        as={RouterLink}
-        to="/"
-        colorScheme="teal"
-        mb={4}
-        size="sm"
+    <div className="max-w-7xl mx-auto py-8 px-4">
+      <button
+        className="bg-teal-600 text-white px-6 py-2 rounded-lg shadow hover:bg-teal-700 mb-6"
+        onClick={() => navigate("/")}
       >
         Go Back
-      </Button>
+      </button>
 
       {loading ? (
         <Loader />
@@ -73,119 +63,106 @@ const SingleBlogScreen = () => {
         <Message type="error">{error}</Message>
       ) : (
         <>
-          <Box shadow="md" borderWidth="1px" borderRadius="lg" p={6} mb={6}>
-            <Text fontSize="2xl" fontWeight="bold" mb={4}>{blog.title}</Text>
-            <Image
-              src={blog.image}
-              alt={blog.title}
-              borderRadius="lg"
-              objectFit="cover"
-              w="full"
-              h="300px"
-              mb={4}
-            />
-            <Text fontSize="md" color="gray.700" mb={4}>
-              {blog.content}
-            </Text>
-            <Divider my={4} />
-            <Text fontSize="sm" color="gray.600" mb={2}>
-              <strong>Author:</strong> {blog.author?.name}
-            </Text>
-            <Text fontSize="sm" color="gray.600">
-              <strong>Contact:</strong>{" "}
-              <a href={`mailto:${blog.author?.email}`} style={{ color: "#3182ce" }}>
-                {blog.author?.email}
-              </a>
-            </Text>
-            <HStack spacing={4} mt={4}>
+          <div className="bg-white shadow-xl rounded-lg overflow-hidden mb-6">
+            <div className="relative">
+              <img
+                src={blog.image}
+                alt={blog.title}
+                className="w-full h-full object-contain"
+              />
+              <div className="absolute top-4 left-4 bg-black bg-opacity-50 text-white px-4 py-2 rounded-lg">
+                <h1 className="text-3xl font-bold">{blog.title}</h1>
+              </div>
+            </div>
+
+            <div className="p-6">
+              <p className="text-lg text-gray-800 mb-4">{blog.content}</p>
+              <div className="flex justify-between items-center mb-4">
+                <p className="text-sm text-gray-600">By {blog.author?.name}</p>
+                <p className="text-sm text-gray-600">{blog.createdAt}</p>
+              </div>
+
               {blog.author?.email === userInfo?.email && (
-                <>
-                  <Button
-                    leftIcon={<FaEdit />}
-                    colorScheme="yellow"
+                <div className="flex gap-6 mt-4">
+                  <button
+                    className="flex items-center gap-2 bg-yellow-500 text-white px-6 py-3 rounded-lg hover:bg-yellow-600"
                     onClick={() => navigate(`/editBlog/${id}`)}
                   >
-                    Edit
-                  </Button>
-                  <Button
-                    leftIcon={<MdDelete />}
-                    colorScheme="red"
+                    <FaEdit /> Edit
+                  </button>
+                  <button
+                    className="flex items-center gap-2 bg-red-500 text-white px-6 py-3 rounded-lg hover:bg-red-600"
                     onClick={() => deleteHandler(blog._id)}
                   >
-                    Delete
-                  </Button>
-                </>
+                    <MdDelete /> Delete
+                  </button>
+                </div>
               )}
-            </HStack>
-          </Box>
+            </div>
+          </div>
 
-          <Box shadow="md" borderWidth="1px" borderRadius="lg" p={6}>
-            <Text fontSize="xl" fontWeight="semibold" mb={4}>
-              Post Comments
-            </Text>
+          <div className="bg-white shadow-xl rounded-lg p-6">
+            <h2 className="text-2xl font-semibold mb-6">Comments</h2>
             {blog.reviews?.length === 0 ? (
-              <Message>No Reviews</Message>
+              <Message>No Reviews Yet</Message>
             ) : (
-              <VStack spacing={4} align="stretch">
+              <div className="space-y-6">
                 {blog.reviews.map((review) => (
-                  <Box key={review._id} bg="gray.100" p={4} borderRadius="md">
-                    <Flex justifyContent="space-between" mb={2}>
-                      <Text fontWeight="bold">{review.name}</Text>
+                  <div
+                    key={review._id}
+                    className="bg-gray-100 p-4 rounded-lg shadow-md"
+                  >
+                    <div className="flex justify-between mb-2">
+                      <p className="font-semibold">{review.name}</p>
                       <Rating value={review.rating} />
-                    </Flex>
-                    <Text>{review.comment}</Text>
-                  </Box>
+                    </div>
+                    <p className="text-sm">{review.comment}</p>
+                  </div>
                 ))}
-              </VStack>
+              </div>
             )}
 
             {userInfo ? (
-              <form onSubmit={submitHandler}>
-                <Box mt={6}>
-                  <Text fontSize="sm" mb={2}>Rating</Text>
-                  <Select
+              <form onSubmit={submitHandler} className="mt-8">
+                <div className="mb-6">
+                  <label className="block text-sm text-gray-700 mb-2">Rating</label>
+                  <select
                     value={rating}
                     onChange={(e) => setRating(e.target.value)}
-                    placeholder="Select..."
-                    mb={4}
+                    className="w-full border border-gray-300 rounded-lg px-4 py-2 text-gray-700"
                   >
                     <option value="1">1 - Poor</option>
                     <option value="2">2 - Fair</option>
                     <option value="3">3 - Good</option>
                     <option value="4">4 - Very Good</option>
                     <option value="5">5 - Excellent</option>
-                  </Select>
+                  </select>
+                </div>
 
-                  <Text fontSize="sm" mb={2}>Comment</Text>
-                  <Textarea
+                <div className="mb-6">
+                  <label className="block text-sm text-gray-700 mb-2">Comment</label>
+                  <textarea
                     value={comment}
                     onChange={(e) => setComment(e.target.value)}
-                    mb={4}
-                  />
+                    className="w-full border border-gray-300 rounded-lg px-4 py-2 text-gray-700"
+                    rows="4"
+                  ></textarea>
+                </div>
 
-                  {/* <Text fontSize="sm" mb={2}>Your Name</Text>
-                  <Input
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                    mb={4}
-                  /> */}
-
-                  <Button
-                    type="submit"
-                    colorScheme="teal"
-                    w="500px"
-                  >
-                    Submit Review
-                  </Button>
-                </Box>
+                <button
+                  type="submit"
+                  className="bg-teal-600 text-white px-6 py-3 rounded-lg shadow hover:bg-teal-700"
+                >
+                  Submit Review
+                </button>
               </form>
             ) : (
               <Message>Please log in to write a review</Message>
             )}
-          </Box>
+          </div>
         </>
       )}
-    </Box>
+    </div>
   );
 };
 
