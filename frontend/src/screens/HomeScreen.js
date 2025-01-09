@@ -1,4 +1,4 @@
-import { Box, Button, Flex, Grid, Heading, Input, Stack, Text, InputGroup, InputLeftElement } from "@chakra-ui/react";
+import { Box, Button, Flex, Grid, Heading, Input, Stack, Text, InputGroup, InputRightElement } from "@chakra-ui/react";
 import { useEffect } from "react";
 import { toast } from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
@@ -93,9 +93,6 @@ const HomeScreen = () => {
           spacing={4}
         >
           <InputGroup w={{ base: "full", sm: "md" }}>
-            <InputLeftElement pointerEvents="none">
-              <SearchIcon color="gray.500" />
-            </InputLeftElement>
             <Input
               placeholder="Search blogs..."
               size="lg"
@@ -103,6 +100,9 @@ const HomeScreen = () => {
               bg="gray.100"
               _hover={{ bg: "white" }}
             />
+            <InputRightElement pointerEvents="none">
+              <SearchIcon color="gray.500" />
+            </InputRightElement>
           </InputGroup>
         </Stack>
       </Box>
