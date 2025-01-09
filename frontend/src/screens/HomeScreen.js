@@ -1,4 +1,4 @@
-import { Box, Button, Flex, Grid, Heading, Text, Image } from "@chakra-ui/react";
+import { Box, Button, Flex, Grid, Heading, Input, Stack, Text, InputGroup, InputLeftElement } from "@chakra-ui/react";
 import { useEffect } from "react";
 import { toast } from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
@@ -7,6 +7,7 @@ import { listBlogs } from "../actions/blogActions";
 import BlogCard from "../components/BlogCard";
 import Loader from "../components/Loader";
 import Message from "../components/Message";
+import { SearchIcon } from "@chakra-ui/icons"; // Import SearchIcon
 
 const HomeScreen = () => {
   const dispatch = useDispatch();
@@ -30,41 +31,43 @@ const HomeScreen = () => {
     }
   }, [userInfo]);
 
-  const handleCreatePost = () => {
-    console.log("Create post clicked");
-  };
-
-  const handleLatestPost = () => {
-    console.log("Latest Blog clicked");
-  };
-
   return (
     <Box maxW="8xl" mx="auto" px={4} py={6}>
       {/* Hero Section */}
       <Box
-        bgGradient="linear(to-r, teal.500, green.500)"
-        py={16}
-        px={8}
         textAlign="center"
-        borderRadius="lg"
-        color="white"
+        py={{ base: 8, md: 12 }}
+        px={4}
+        color="gray.800"
       >
-        <Heading as="h1" fontSize={{ base: "3xl", md: "4xl" }} mb={4}>
+        <Heading
+          as="h3"
+          fontSize={{ base: "2xl", sm: "3xl", md: "5xl" }}
+          mb={4}
+        >
           Welcome to Blogosphere
         </Heading>
-        <Text fontSize={{ base: "md", md: "lg" }} maxW="3xl" mx="auto" mb={8}>
-          Discover, share, and stay inspired with our collection of featured
-          blogs written by passionate authors worldwide.
+        <Text
+          fontSize={{ base: "md", sm: "lg", md: "xl" }}
+          maxW="2xl"
+          mx="auto"
+          mb={6}
+        >
+          Discover inspiring content from passionate bloggers around the world. Share your thoughts and connect with a vibrant community
         </Text>
-        <Flex justify="center" gap={4} flexWrap="wrap">
+        <Flex
+          direction={{ base: "column", md: "row" }}
+          gap={4}
+          justify="center"
+          align="center"
+        >
           <Button
             as={RouterLink}
             to="/postBlog"
             size="lg"
-            colorScheme="whiteAlpha"
-            onClick={handleCreatePost}
-            leftIcon={<i className="fas fa-pen"></i>}
-            _hover={{ bg: "white", color: "teal.500" }}
+            colorScheme="teal"
+            variant="solid"
+            w={{ base: "full", sm: "auto" }}
           >
             Create Post
           </Button>
@@ -72,18 +75,43 @@ const HomeScreen = () => {
             as={RouterLink}
             to="/latestBlogs"
             size="lg"
-            colorScheme="whiteAlpha"
-            onClick={handleLatestPost}
-            leftIcon={<i className="fas fa-blog"></i>}
-            _hover={{ bg: "white", color: "teal.500" }}
+            colorScheme="teal"
+            variant="outline"
+            w={{ base: "full", sm: "auto" }}
           >
             Latest Blogs
           </Button>
         </Flex>
       </Box>
 
+      {/* Search */}
+      <Box mt={8}>
+        <Stack
+          direction={{ base: "column", sm: "row" }}
+          align="center"
+          justify="center"
+          spacing={4}
+        >
+          <InputGroup w={{ base: "full", sm: "md" }}>
+            <InputLeftElement pointerEvents="none">
+              <SearchIcon color="gray.500" />
+            </InputLeftElement>
+            <Input
+              placeholder="Search blogs..."
+              size="lg"
+              variant="filled"
+              bg="gray.100"
+              _hover={{ bg: "white" }}
+            />
+          </InputGroup>
+        </Stack>
+      </Box>
+
       {/* Blog Cards Section */}
       <Box mt={12}>
+        <Heading as="h2" fontSize={{ base: "xl", md: "2xl" }} mb={4}>
+          All Blogs
+        </Heading>
         {loading ? (
           <Loader />
         ) : error ? (
@@ -92,10 +120,10 @@ const HomeScreen = () => {
           <Grid
             templateColumns={{
               base: "1fr",
-              md: "repeat(2, 1fr)",
-              lg: "repeat(3, 1fr)",
+              sm: "repeat(2, 1fr)",
+              md: "repeat(3, 1fr)",
             }}
-            gap={8}
+            gap={6}
           >
             {blogs.map((blog) => (
               <Box
@@ -112,7 +140,6 @@ const HomeScreen = () => {
           </Grid>
         )}
       </Box>
-
     </Box>
   );
 };

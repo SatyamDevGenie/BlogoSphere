@@ -25,7 +25,7 @@ const BlogCard = ({ blog }) => {
         <img
           src={blog.image}
           alt={blog.title}
-          className="w-full h-50 object-contain rounded-t-lg group-hover:scale-105 transition-transform duration-500"
+          className="w-full h-full object-cover rounded-t-lg group-hover:scale-105 transition-transform duration-500"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
       </div>
