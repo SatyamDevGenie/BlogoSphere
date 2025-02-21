@@ -1,7 +1,7 @@
 const blogs = [
  
   {
-    title: "Artifical Intelligence",
+    title: "Artificial Intelligence",
     image: "/images/ai.jpg",
     content:
       "Artificial Intelligence (AI) is a branch of computer science focused on creating systems that can perform tasks that typically require human intelligence. These tasks include things like understanding natural language, recognizing patterns, solving problems, and learning from experience. AI techniques range from traditional methods like rule-based systems to more advanced approaches such as machine learning and deep learning, where algorithms can automatically improve their performance through exposure to data.",
