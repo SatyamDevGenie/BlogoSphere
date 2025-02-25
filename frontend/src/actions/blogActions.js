@@ -24,7 +24,7 @@ export const listBlogs = () => async (dispatch) => {
   try {
     dispatch({ type: BlOG_LIST_REQUEST });
 
-    const { data } = await axios.get("https://blogosphere-pt20.onrender.com/api/blogs");
+    const { data } = await axios.get("/api/blogs");
 
     dispatch({ type: BLOG_LIST_SUCCESS, payload: data });
   } catch (err) {
@@ -42,7 +42,7 @@ export const listBlogDetails = (id) => async (dispatch) => {
   try {
     dispatch({ type: BLOG_DETAILS_REQUEST });
 
-    const { data } = await axios.get(`https://blogosphere-pt20.onrender.com/api/blogs/${id}`);
+    const { data } = await axios.get(`/api/blogs/${id}`);
 
     dispatch({ type: BLOG_DETAILS_SUCCESS, payload: data });
   } catch (err) {
@@ -72,7 +72,7 @@ export const createBlogReview =
         },
       };
 
-      await axios.post(`https://blogosphere-pt20.onrender.com/api/blogs/${blogId}/reviews`, review, config);
+      await axios.post(`/api/blogs/${blogId}/reviews`, review, config);
 
       dispatch({ type: BLOG_REVIEW_CREATE_SUCCESS });
     } catch (err) {
@@ -101,7 +101,7 @@ export const createBlog = (blog) => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.post(`https://blogosphere-pt20.onrender.com/api/blogs`, blog, config);
+    const { data } = await axios.post(`/api/blogs`, blog, config);
 
     dispatch({ type: BLOG_CREATE_SUCCESS, payload: data });
   } catch (err) {
@@ -133,7 +133,7 @@ export const updateBlog = (blog) => async (dispatch, getState) => {
 
     console.log("Updating blog with ID:", blog._id); // Log blog._id to ensure it's not undefined
 
-    const { data } = await axios.put(`https://blogosphere-pt20.onrender.com/api/blogs/${blog._id}`, blog, config);
+    const { data } = await axios.put(`/api/blogs/${blog._id}`, blog, config);
 
     dispatch({ type: BLOG_UPDATE_SUCCESS, payload: data });
   } catch (err) {
@@ -161,7 +161,7 @@ export const deleteBlog = (id) => async (dispatch, getState) => {
       },
     };
 
-    await axios.delete(`https://blogosphere-pt20.onrender.com/api/blogs/${id}`, config);
+    await axios.delete(`/api/blogs/${id}`, config);
 
     dispatch({ type: BLOG_DELETE_SUCCESS });
   } catch (err) {
