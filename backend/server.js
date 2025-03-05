@@ -2,7 +2,7 @@ import dotenv from "dotenv";
 import express from "express";
 import path from "path";
 import chalk from "chalk";
-import cors from "cors";
+// import cors from "cors";
 
 import connectDB from "./config/db.js";
 import { errorHandler, notFound } from "./middlewares/errorMiddleware.js";
@@ -17,15 +17,15 @@ connectDB(); // Connect to MongoDB
 const app = express();
 app.use(express.json()); // Accept JSON data
 
-// ✅ CORS Setup: Allow frontend URL only
-const allowedOrigins = [process.env.FRONTEND_URL];
+// // ✅ CORS Setup: Allow frontend URL only
+// const allowedOrigins = [process.env.FRONTEND_URL];
 
-app.use(
-  cors({
-    origin: allowedOrigins,
-    credentials: true,
-  })
-);
+// app.use(
+//   cors({
+//     origin: allowedOrigins,
+//     credentials: true,
+//   })
+// );
 
 app.get("/", (req, res) => {
   res.send("API is running");

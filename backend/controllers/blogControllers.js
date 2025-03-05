@@ -1,5 +1,5 @@
 import asyncHandler from "express-async-handler";
-
+import generateToken from "../utils/generateToken.js";
 import Blog from "../models/blogModel.js";
 
 /**
@@ -67,29 +67,6 @@ const createBlog = asyncHandler(async (req, res) => {
  * @access	private/admin
  */
 
-// const updateBlog = asyncHandler(async (req, res) => {
-//   const { id } = req.params;
-//   const { title, content, image } = req.body;
-
-//   const blog = await Blog.findById(req.params.id);
-
-//   if (blog) {
-//     blog.title = title;
-//     blog.content = content;
-//     blog.image = image;
-
-//     const updatedBlog = await blog.save();
-//     res.json(updatedBlog);
-//   } else {
-//     res.status(404);
-//     throw new Error("Blog not Found");
-//   }
-// });
-
-// blogController.js
-
-// controllers/blogController.js
-
 const updateBlog = async (req, res) => {
   const { id } = req.params;
   const { title, content, image } = req.body;
@@ -144,6 +121,8 @@ const deleteBlog = asyncHandler(async (req, res) => {
   }
 });
 
+
+
 /**
  * @desc    Add review comment and rating to a blog
  * @route   POST /api/blogs/:id/addReview
@@ -182,6 +161,8 @@ const addBlogReview = asyncHandler(async (req, res) => {
     res.status(500).json({ message: "Server Error" });
   }
 });
+
+
 
 export {
   addBlogReview,
