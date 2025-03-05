@@ -27,7 +27,7 @@ export const login = (email, password) => async (dispatch) => {
     };
 
     const { data } = await axios.post(
-      `https://blogosphere-pt20.onrender.com/api/users/login`,
+      `/api/users/login`,
       { email, password },
       config
     );
@@ -62,7 +62,7 @@ export const register = (name, email, password) => async (dispatch) => {
     };
 
     const { data } = await axios.post(
-      `https://blogosphere-pt20.onrender.com/api/users`,
+      `/api/users`,
       { name, email, password },
       config
     );
@@ -94,7 +94,7 @@ export const getUserDetails = () => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.get(`https://blogosphere-pt20.onrender.com/api/users/profile`, config);
+    const { data } = await axios.get(`/api/users/profile`, config);
 
     dispatch({ type: USER_DETAILS_SUCCESS, payload: data });
   } catch (err) {
@@ -123,7 +123,7 @@ export const updateUserProfile = (user) => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.put(`https://blogosphere-pt20.onrender.com/api/users/profile`, user, config);
+    const { data } = await axios.put(`/api/users/profile`, user, config);
 
     dispatch({ type: USER_UPDATE_PROFILE_SUCCESS, payload: data });
     dispatch({ type: USER_LOGIN_SUCCESS, payload: data });
