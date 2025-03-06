@@ -37,10 +37,10 @@ const Footer = () => {
           <span role="img" aria-label="love">
             ❤️
           </span>{" "}
-          by{" "}
+          {/* by{" "}
           <Link color="blue.500" href="https://ss-dev-portfolio.netlify.app">
             Satyam Sawant
-          </Link>
+          </Link> */}
         </Text>
       </Box>
     </Flex>

@@ -84,32 +84,10 @@ const HomeScreen = () => {
         </Flex>
       </Box>
 
-      {/* Search */}
-      <Box mt={8}>
-        <Stack
-          direction={{ base: "column", sm: "row" }}
-          align="center"
-          justify="center"
-          spacing={4}
-        >
-          <InputGroup w={{ base: "full", sm: "md" }}>
-            <Input
-              placeholder="Search blogs..."
-              size="lg"
-              variant="filled"
-              bg="gray.100"
-              _hover={{ bg: "white" }}
-            />
-            <InputRightElement pointerEvents="none">
-              <SearchIcon color="gray.500" />
-            </InputRightElement>
-          </InputGroup>
-        </Stack>
-      </Box>
 
       {/* Blog Cards Section */}
       <Box mt={12}>
-        <Heading as="h2" fontSize={{ base: "xl", md: "2xl" }} mb={4}>
+        <Heading as="h2" fontSize={{ base: "xl", md: "2xl" }} mb={8}>
           All Blogs
         </Heading>
         {loading ? (
